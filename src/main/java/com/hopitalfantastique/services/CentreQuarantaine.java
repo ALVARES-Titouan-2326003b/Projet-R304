@@ -1,6 +1,7 @@
-package main.java.com.hopitalfantastique.services;
+package java.com.hopitalfantastique.services;
 
-import java.com.hopitalfantastique.creatures.Creature;
+import java.com.hopitalfantastique.creatures.CreaturePatient;
+import java.com.hopitalfantastique.creatures.comportements.Bestial;
 
 public class CentreQuarantaine extends ServiceMedical{
     public CentreQuarantaine(String nom, float superficie, int capaciteMax, String budget) {
@@ -8,8 +9,8 @@ public class CentreQuarantaine extends ServiceMedical{
     }
 
     @Override
-    public void ajouterCreature(Creature creature) {
-        if (creature instanceof Bes) {}
+    public void ajouterCreature(CreaturePatient creature) {
+        if (creature instanceof Bestial) {}
         super.ajouterCreature(creature);
     }
 }

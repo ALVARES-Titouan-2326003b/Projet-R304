@@ -1,17 +1,17 @@
 package java.com.hopitalfantastique.creatures.comportements;
 
-import java.com.hopitalfantastique.creatures.Creature;
+import java.com.hopitalfantastique.creatures.CreaturePatient;
 import java.com.hopitalfantastique.creatures.maladies.Maladie;
 import java.util.ArrayList;
 import java.util.Random;
 
 public interface Bestial {
-    public default void contamine(Creature creature) {
+    public default void contamine(CreaturePatient creature) {
         Random rd = new Random();
         ArrayList<Maladie> listeMaladies = creature.getListeMaladie();
         String nomMaladie = listeMaladies.get(rd.nextInt(listeMaladies.size())).getNomComplet();
-        ArrayList<Creature> listeCreatures = creature.getService().getListeCreature();
-        Creature aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
+        ArrayList<CreaturePatient> listeCreatures = creature.getService().getListeCreature();
+        CreaturePatient aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
         while (aContaminer.possedeMaladie(nomMaladie)) {
             listeCreatures.remove(aContaminer);
             if (listeCreatures.size() == 0) return;
