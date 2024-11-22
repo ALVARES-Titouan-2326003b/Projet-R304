@@ -28,10 +28,15 @@ public class Crypte extends ServiceMedical {
     }
 
     @Override
-    public void ajouterCreature(CreaturePatient creature) {
+    public boolean ajouterCreature(CreaturePatient creature) {
         if (creature instanceof MortVivant) {
-            super.ajouterCreature(creature);
+            if (getListeCreatures().size() < getCapaciteMax()){
+                super.ajouterCreature(creature);
+                return true;
+            }
+            return false;
         }
+        else return false;
     }
 
 }

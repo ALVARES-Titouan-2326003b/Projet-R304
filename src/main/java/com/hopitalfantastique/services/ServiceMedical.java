@@ -10,7 +10,8 @@ public class ServiceMedical {
     private int capaciteMax;
     private int nombreCreature;
     private ArrayList<CreaturePatient> listeCreatures;
-    private String budget;
+    private String budget; //on garde?
+
 
     public ServiceMedical(String nom, float superficie, int capaciteMax, String budget) {
         this.nom = nom;
@@ -18,18 +19,41 @@ public class ServiceMedical {
         this.capaciteMax = capaciteMax;
         nombreCreature = 0;
         this.budget = budget;
+        listeCreatures = new ArrayList<>();
     }
 
     public ArrayList<CreaturePatient> getListeCreatures() {
         return listeCreatures;
     }
 
-    public void ajouterCreature(CreaturePatient creature) {
-        listeCreatures.add(creature);
+    public String getNom() {
+        return nom;
+    }
+
+    public int getCapaciteMax() {
+        return capaciteMax;
+    }
+
+    public int getNombreCreature() {
+        return nombreCreature;
+    }
+
+    public void setNombreCreature() {
+        this.nombreCreature ++;
+    }
+
+    public boolean ajouterCreature(CreaturePatient creature) {
+        if (listeCreatures.size() < capaciteMax) {
+            listeCreatures.add(creature);
+            nombreCreature++;
+            return true;
+        }
+        else return false;
     }
 
     public void enleverCreature(CreaturePatient creature) {
         listeCreatures.remove(creature);
+        nombreCreature--;
     }
 
     public void soignerCreature(CreaturePatient creature, Maladie maladie) {
@@ -39,6 +63,7 @@ public class ServiceMedical {
     public void reviserBudget(String budget) {
         this.budget = budget;
     }
+
 
 
     @Override

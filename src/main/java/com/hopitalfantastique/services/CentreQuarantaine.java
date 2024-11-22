@@ -12,10 +12,15 @@ public class CentreQuarantaine extends ServiceMedical{
     }
 
     @Override
-    public void ajouterCreature(CreaturePatient creature) {
-        if (creature instanceof Bestial) {
-            super.ajouterCreature(creature);
+    public boolean ajouterCreature(CreaturePatient creature) {
+        if (getListeCreatures().size() < getCapaciteMax()){
+            if (creature instanceof Bestial) {
+                super.ajouterCreature(creature);
+                return true;
+            }
+            else return false;
         }
+        else return false;
     }
 
     public ArrayList<CreaturePatient> getCreaturesEnIsolation() {
