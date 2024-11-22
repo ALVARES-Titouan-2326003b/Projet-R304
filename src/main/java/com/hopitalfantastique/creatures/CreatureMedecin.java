@@ -1,10 +1,9 @@
 package java.com.hopitalfantastique.creatures;
 
-import java.com.hopitalfantastique.creatures.maladies.Maladie;
+import java.com.hopitalfantastique.creatures.especesInterface.Race;
 import java.com.hopitalfantastique.services.ServiceMedical;
-import java.util.ArrayList;
 
-public abstract class CreatureMedecin {
+public abstract class CreatureMedecin implements Race {
     private String nom;
     private String sexe;
     private int age;
@@ -61,8 +60,8 @@ public abstract class CreatureMedecin {
     }
 
     public void soigneCreature (CreaturePatient creaturePatient, String maladie) {
-        creaturePatient.estSoignee(maladie);
+        if (this.getRace() == creaturePatient.getRace()) {
+            creaturePatient.getService().soignerCreature(creaturePatient, maladie);
+        }
     }
-
-
 }

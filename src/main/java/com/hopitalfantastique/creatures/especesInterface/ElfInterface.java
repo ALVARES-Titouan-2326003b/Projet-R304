@@ -1,7 +1,8 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-import java.com.hopitalfantastique.creatures.CreaturePatient;
-
-public interface ElfInterface {
+public interface ElfInterface extends Race {
     String race = "Elf";
+    default String getRace() {
+        return race;
+    }
 }

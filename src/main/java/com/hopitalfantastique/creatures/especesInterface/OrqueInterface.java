@@ -1,5 +1,8 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-public interface OrqueInterface {
+public interface OrqueInterface extends Race {
     String race = "Orque";
+    default String getRace() {
+        return race;
+    }
 }
