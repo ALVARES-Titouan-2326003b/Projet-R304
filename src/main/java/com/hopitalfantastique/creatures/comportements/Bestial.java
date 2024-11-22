@@ -9,15 +9,15 @@ public interface Bestial {
     public default void contamine(CreaturePatient creature) {
         Random rd = new Random();
         ArrayList<Maladie> listeMaladies = creature.getListeMaladie();
-        String nomMaladie = listeMaladies.get(rd.nextInt(listeMaladies.size())).getNomComplet();
-        ArrayList<CreaturePatient> listeCreatures = creature.getService().getListeCreature();
+        Maladie maladie = listeMaladies.get(rd.nextInt(listeMaladies.size()));
+        ArrayList<CreaturePatient> listeCreatures = creature.getService().getListeCreatures();
         CreaturePatient aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
-        while (aContaminer.possedeMaladie(nomMaladie)) {
+        while (aContaminer.possedeMaladie(maladie.getNomComplet())) {
             listeCreatures.remove(aContaminer);
             if (listeCreatures.size() == 0) return;
             aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
         }
-        aContaminer.tombeMalade(new Maladie(nomMaladie));
+        aContaminer.tombeMalade(new Maladie(maladie.getNomComplet(), maladie.getNomAbrege(), maladie.getLvlLetal(), 1));
     }
 
 

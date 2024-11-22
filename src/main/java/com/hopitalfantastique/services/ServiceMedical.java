@@ -20,6 +20,10 @@ public class ServiceMedical {
         this.budget = budget;
     }
 
+    public ArrayList<CreaturePatient> getListeCreatures() {
+        return listeCreatures;
+    }
+
     public void ajouterCreature(CreaturePatient creature) {
         listeCreatures.add(creature);
     }

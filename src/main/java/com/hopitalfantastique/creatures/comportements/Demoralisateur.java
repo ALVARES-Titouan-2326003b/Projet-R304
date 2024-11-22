@@ -8,7 +8,7 @@ import java.util.Random;
 public interface Demoralisateur {
     public default void demoralise(CreaturePatient creature) {
         ServiceMedical service = creature.getService();
-        ArrayList<CreaturePatient> listeCreatures = service.getListeCreature();
+        ArrayList<CreaturePatient> listeCreatures = service.getListeCreatures();
         Random rd = new Random();
         listeCreatures.remove(creature);
         for (int i = 0; i < rd.nextInt(listeCreatures.size()+1); i++) {
