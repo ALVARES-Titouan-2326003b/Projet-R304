@@ -1,4 +1,5 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-public class HommeBeteInterface {
+public interface HommeBeteInterface {
+    String race = "HommeBete";
 }

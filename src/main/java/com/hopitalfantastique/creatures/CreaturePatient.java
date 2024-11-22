@@ -3,7 +3,7 @@ package java.com.hopitalfantastique.creatures;
 import java.com.hopitalfantastique.creatures.maladies.Maladie;
 import java.util.ArrayList;
 
-public abstract class Creature {
+public abstract class CreaturePatient {
     private String nom;
     private String sexe;
     private float poids;
@@ -12,6 +12,17 @@ public abstract class Creature {
     private int indMoral;
     private int numHurlement;
     private ArrayList<Maladie> listeMaladie;
+
+    public CreaturePatient(String nom, String sexe, float poids, float taille, int age, ArrayList<Maladie> listeMaladie, int indMoral) {
+        this.nom = nom;
+        this.sexe = sexe;
+        this.poids = poids;
+        this.taille = taille;
+        this.age = age;
+        this.listeMaladie = listeMaladie;
+        this.indMoral = indMoral;
+        this.numHurlement = 0;
+    }
 
     public String getNom() {
         return nom;
