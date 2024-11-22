@@ -28,7 +28,7 @@ public class ServiceMedical {
         listeCreatures.add(creature);
     }
 
-    public void enleverCreature(CreaturePatient creature) {
+    public void enleverCreatunre(CreaturePatient creature) {
         listeCreatures.remove(creature);
     }
 
