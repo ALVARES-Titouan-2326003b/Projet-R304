@@ -1,8 +1,10 @@
-package main.java.com.hopitalfantastique.services;
+package java.com.hopitalfantastique.services;
 
-import java.com.hopitalfantastique.creatures.Creature;
+import java.com.hopitalfantastique.creatures.CreaturePatient;
+import java.com.hopitalfantastique.creatures.comportements.MortVivant;
+import java.com.hopitalfantastique.services.ServiceMedical;
 
-public class Crypte extends ServiceMedical{
+public class Crypte extends ServiceMedical {
     private int niveauVentilation;
     private float temperature;
 
@@ -26,7 +28,7 @@ public class Crypte extends ServiceMedical{
     }
 
     @Override
-    public void ajouterCreature(Creature creature) {
+    public void ajouterCreature(CreaturePatient creature) {
         if (creature instanceof MortVivant) {
             super.ajouterCreature(creature);
         }

@@ -20,6 +20,10 @@ public class ServiceMedical {
         this.budget = budget;
     }
 
+    public ArrayList<CreaturePatient> getListeCreatures() {
+        return listeCreatures;
+    }
+
     public void ajouterCreature(CreaturePatient creature) {
         listeCreatures.add(creature);
     }
@@ -29,7 +33,7 @@ public class ServiceMedical {
     }
 
     public void soignerCreature(CreaturePatient creature, Maladie maladie) {
-        creature.estSoignee(maladie);
+        creature.estSoignee(maladie.getNomComplet());
     }
 
     public void reviserBudget(String budget) {

@@ -6,6 +6,13 @@ public class Maladie {
     private int lvlLetal;
     private int lvlActuel;
 
+    public Maladie(String nomComplet, String nomAbrege, int lvlLetal, int lvlActuel) {
+        this.nomComplet = nomComplet;
+        this.nomAbrege = nomAbrege;
+        this.lvlLetal = lvlLetal;
+        this.lvlActuel = lvlActuel;
+    }
+
     public String getNomComplet() {
         return nomComplet;
     }

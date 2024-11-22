@@ -1,6 +1,7 @@
 package java.com.hopitalfantastique.services;
 
 import java.com.hopitalfantastique.creatures.CreaturePatient;
+import java.com.hopitalfantastique.creatures.comportements.Bestial;
 import java.util.ArrayList;
 
 public class CentreQuarantaine extends ServiceMedical{
