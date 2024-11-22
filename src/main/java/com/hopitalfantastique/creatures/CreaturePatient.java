@@ -1,6 +1,7 @@
 package java.com.hopitalfantastique.creatures;
 
 import java.com.hopitalfantastique.creatures.maladies.Maladie;
+import java.com.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
 
 public abstract class CreaturePatient {
@@ -12,6 +13,7 @@ public abstract class CreaturePatient {
     private int indMoral;
     private int numHurlement;
     private ArrayList<Maladie> listeMaladie;
+    private ServiceMedical service;
 
     public CreaturePatient(String nom, String sexe, float poids, float taille, int age, ArrayList<Maladie> listeMaladie, int indMoral) {
         this.nom = nom;
@@ -22,6 +24,31 @@ public abstract class CreaturePatient {
         this.listeMaladie = listeMaladie;
         this.indMoral = indMoral;
         this.numHurlement = 0;
+        this.service = null;
+    }
+
+    public float getTaille() {
+        return taille;
+    }
+
+    public void setTaille(float taille) {
+        this.taille = taille;
+    }
+
+    public int getNumHurlement() {
+        return numHurlement;
+    }
+
+    public void setNumHurlement(int numHurlement) {
+        this.numHurlement = numHurlement;
+    }
+
+    public ServiceMedical getService() {
+        return service;
+    }
+
+    public void setService(ServiceMedical service) {
+        this.service = service;
     }
 
     public String getNom() {

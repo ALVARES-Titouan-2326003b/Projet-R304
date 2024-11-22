@@ -1,6 +1,7 @@
 package java.com.hopitalfantastique.creatures;
 
 import java.com.hopitalfantastique.creatures.maladies.Maladie;
+import java.com.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
 
 public abstract class CreatureMedecin {
@@ -42,4 +43,26 @@ public abstract class CreatureMedecin {
     public String toString () {
         return (nom + " " + sexe + " " + age).toString();
     }
+
+    public String examineService (ServiceMedical nomService) {
+        return nomService.toString();
+    }
+
+    public void reviseBudget (ServiceMedical nomService, String nouveauBudget) {
+        nomService.reviserBudget(nouveauBudget);
+    }
+
+    public void transfereCreature (ServiceMedical nouveauService, CreaturePatient creaturePatient) {
+        nouveauService.ajouterCreature(creaturePatient);
+    }
+
+    public void libereCreature (CreaturePatient creaturePatient) {
+        creaturePatient.getService().enleverCreature(creaturePatient);
+    }
+
+    public void soigneCreature (CreaturePatient creaturePatient, String maladie) {
+        creaturePatient.estSoignee(maladie);
+    }
+
+
 }
