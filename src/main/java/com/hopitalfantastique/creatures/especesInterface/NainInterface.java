@@ -1,5 +1,8 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-public interface NainInterface {
+public interface NainInterface extends Race {
     String race = "Nain";
+    default String getRace() {
+        return race;
+    }
 }

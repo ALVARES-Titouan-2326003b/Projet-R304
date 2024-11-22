@@ -32,8 +32,8 @@ public class ServiceMedical {
         listeCreatures.remove(creature);
     }
 
-    public void soignerCreature(CreaturePatient creature, Maladie maladie) {
-        creature.estSoignee(maladie.getNomComplet());
+    public void soignerCreature(CreaturePatient creature, String maladie) {
+        creature.estSoignee(maladie);
     }
 
     public void reviserBudget(String budget) {
