@@ -1,6 +1,6 @@
-package main.java.com.hopitalfantastique.services;
+package java.com.hopitalfantastique.services;
 
-import java.com.hopitalfantastique.creatures.Creature;
+import java.com.hopitalfantastique.creatures.CreaturePatient;
 import java.com.hopitalfantastique.creatures.maladies.Maladie;
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class ServiceMedical {
     private float superficie;
     private int capaciteMax;
     private int nombreCreature;
-    private ArrayList<Creature> listeCreatures;
+    private ArrayList<CreaturePatient> listeCreatures;
     private String budget;
 
     public ServiceMedical(String nom, float superficie, int capaciteMax, String budget) {
@@ -20,15 +20,15 @@ public class ServiceMedical {
         this.budget = budget;
     }
 
-    public void ajouterCreature(Creature creature) {
+    public void ajouterCreature(CreaturePatient creature) {
         listeCreatures.add(creature);
     }
 
-    public void enleverCreature(Creature creature) {
+    public void enleverCreature(CreaturePatient creature) {
         listeCreatures.remove(creature);
     }
 
-    public void soignerCreature(Creature creature, Maladie maladie) {
+    public void soignerCreature(CreaturePatient creature, Maladie maladie) {
         creature.estSoignee(maladie);
     }
 
@@ -52,7 +52,7 @@ public class ServiceMedical {
             sb.append("Aucune créature présente.\n");
         }
         else {
-            for (Creature creature : listeCreatures) {
+            for (CreaturePatient creature : listeCreatures) {
                 sb.append(creature.toString()).append("\n");
             }
         }
