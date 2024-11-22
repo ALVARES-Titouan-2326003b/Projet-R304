@@ -1,4 +1,5 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-public class OrqueInterface {
+public interface OrqueInterface {
+    String race = "Orque";
 }

@@ -1,4 +1,12 @@
 package java.com.hopitalfantastique.creatures.patient;
 
-public class NainPatient {
+import java.com.hopitalfantastique.creatures.CreaturePatient;
+import java.com.hopitalfantastique.creatures.especesInterface.NainInterface;
+import java.com.hopitalfantastique.creatures.maladies.Maladie;
+import java.util.ArrayList;
+
+public class NainPatient extends CreaturePatient implements NainInterface {
+    public NainPatient(String nom, String sexe, float poids, float taille, int age, ArrayList<Maladie> listeMaladie, int indMoral) {
+        super(nom, sexe, poids, taille, age, listeMaladie, indMoral);
+    }
 }

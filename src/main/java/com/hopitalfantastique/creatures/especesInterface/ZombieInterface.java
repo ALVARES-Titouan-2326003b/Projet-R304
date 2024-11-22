@@ -1,5 +1,5 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-public class ZombieInterface
-{
+public interface ZombieInterface {
+    String race = "Zombie";
 }

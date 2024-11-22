@@ -1,4 +1,5 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-public class ReptilienInterface {
+public interface ReptilienInterface {
+    String race = "Reptilien";
 }

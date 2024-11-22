@@ -1,4 +1,5 @@
 package java.com.hopitalfantastique.creatures.especesInterface;
 
-public class LycanthropeInterface {
+public interface LycanthropeInterface {
+    String race = "Lycanthrope";
 }
