@@ -11,9 +11,13 @@ public interface Demoralisateur {
         ArrayList<CreaturePatient> listeCreatures = service.getListeCreatures();
         Random rd = new Random();
         listeCreatures.remove(creature);
+        CreaturePatient aDemoraliser;
         for (int i = 0; i < rd.nextInt(listeCreatures.size()+1); i++) {
             int index_creature = rd.nextInt(listeCreatures.size());
-            listeCreatures.get(rd.nextInt(index_creature)).diminueMoral();
+            aDemoraliser = listeCreatures.get(rd.nextInt(index_creature));
+            if (aDemoraliser.getIndMoral() > 0) {
+                aDemoraliser.setIndMoral(aDemoraliser.getIndMoral() - Math.min(rd.nextInt(3)+1, aDemoraliser.getIndMoral()));
+            }
             listeCreatures.remove(index_creature);
         }
     }
