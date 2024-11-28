@@ -1,4 +1,4 @@
-package java.com.hopitalfantastique;
+package com.hopitalfantastique;
 
 public class Menu {
 }

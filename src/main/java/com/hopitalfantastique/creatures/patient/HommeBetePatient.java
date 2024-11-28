@@ -1,8 +1,8 @@
-package java.com.hopitalfantastique.creatures.patient;
+package com.hopitalfantastique.creatures.patient;
 
-import java.com.hopitalfantastique.creatures.CreaturePatient;
-import java.com.hopitalfantastique.creatures.especesInterface.HommeBeteInterface;
-import java.com.hopitalfantastique.creatures.maladies.Maladie;
+import com.hopitalfantastique.creatures.CreaturePatient;
+import com.hopitalfantastique.creatures.especesInterface.HommeBeteInterface;
+import com.hopitalfantastique.creatures.Maladie;
 import java.util.ArrayList;
 
 public class HommeBetePatient extends CreaturePatient implements HommeBeteInterface {

@@ -1,8 +1,8 @@
-package java.com.hopitalfantastique.services;
+package com.hopitalfantastique.services;
 
-import java.com.hopitalfantastique.creatures.CreaturePatient;
-import java.com.hopitalfantastique.creatures.comportements.MortVivant;
-import java.com.hopitalfantastique.services.ServiceMedical;
+import com.hopitalfantastique.creatures.CreaturePatient;
+import com.hopitalfantastique.creatures.comportements.MortVivant;
+import com.hopitalfantastique.services.ServiceMedical;
 
 public class Crypte extends ServiceMedical {
     private int niveauVentilation;

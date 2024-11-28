@@ -1,4 +1,4 @@
-package java.com.hopitalfantastique.creatures.especesInterface;
+package com.hopitalfantastique.creatures.especesInterface;
 
 public interface LycanthropeInterface extends Race {
     String race = "Lycanthrope";

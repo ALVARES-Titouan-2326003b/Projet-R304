@@ -1,8 +1,7 @@
-package java.com.hopitalfantastique.creatures;
+package com.hopitalfantastique.creatures;
 
-import java.com.hopitalfantastique.creatures.especesInterface.Race;
-import java.com.hopitalfantastique.creatures.maladies.Maladie;
-import java.com.hopitalfantastique.services.ServiceMedical;
+import com.hopitalfantastique.creatures.especesInterface.Race;
+import com.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
 import java.util.Random;
 
