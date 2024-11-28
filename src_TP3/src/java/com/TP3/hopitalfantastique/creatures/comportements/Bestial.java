@@ -26,7 +26,7 @@ public interface Bestial {
             }
             aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
         }
-        aContaminer.tombeMalade(new Maladie(maladie.getNomComplet(), maladie.getNomAbrege(), maladie.getLvlLetal(), 1));
+        aContaminer.tombeMalade(new Maladie(maladie.getNomComplet(), maladie.getNomAbrege(), maladie.getLvlLetal()));
     }
 
 
