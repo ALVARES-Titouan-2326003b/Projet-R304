@@ -1,10 +1,12 @@
 package java.com.TP3.hopitalfantastique.creatures;
 
-import java.com.TP3.hopitalfantastique.services.ServiceMedical;
+import java.com.TP3.hopitalfantastique.creatures.especesInterface.Race;
 import java.com.TP3.hopitalfantastique.creatures.maladies.Maladie;
+import java.com.TP3.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
+import java.util.Random;
 
-public abstract class CreaturePatient {
+public abstract class CreaturePatient implements Race {
     private String nom;
     private String sexe;
     private float poids;
@@ -25,14 +27,6 @@ public abstract class CreaturePatient {
         this.indMoral = indMoral;
         this.numHurlement = 0;
         this.service = null;
-    }
-
-    public float getTaille() {
-        return taille;
-    }
-
-    public void setTaille(float taille) {
-        this.taille = taille;
     }
 
     public int getNumHurlement() {
@@ -106,7 +100,6 @@ public abstract class CreaturePatient {
         } else {
             hurler();
         }
-        //a revoir
     }
 
     public void hurler() {
@@ -118,7 +111,34 @@ public abstract class CreaturePatient {
     }
 
     public void semporte() {
-        return; // je sais pas quoi mettre
+        ArrayList <CreaturePatient> listeAContaminer = null;
+        Random rand = new Random();
+        int nombreAContaminer = rand.nextInt(5);
+        ArrayList <CreaturePatient> listeCreatureService = service.getListeCreatures();
+        for (int i = 0; i < nombreAContaminer; i++) {
+            listeAContaminer.add(listeCreatureService.get(rand.nextInt(listeCreatureService.size())));
+        }
+        for (int i = 0; i < listeAContaminer.size(); i++) {
+            contamine(listeAContaminer.get(i));
+        }
+    }
+
+    public void contamine(CreaturePatient creaturePatient) {
+        Random rand = new Random();
+        Maladie maladieATransmetre = listeMaladie.get(rand.nextInt(listeMaladie.size()));
+        if (listeMaladie.size() != 0) {
+            if (creaturePatient.possedeMaladie(maladieATransmetre.getNomComplet())){
+                for (Maladie maladie : creaturePatient.listeMaladie){
+                    if (maladie.getNomComplet().equals(maladieATransmetre.getNomComplet())){
+                        maladie.setLvlActuel(maladie.getLvlActuel() + 1);
+                    }
+                }
+            }
+            else {
+                creaturePatient.tombeMalade(new Maladie(maladieATransmetre.getNomComplet(), maladieATransmetre.getNomAbrege(), maladieATransmetre.getLvlLetal(), 1));
+            }
+        }
+
     }
 
     public void tombeMalade(Maladie maladie) {
@@ -153,6 +173,6 @@ public abstract class CreaturePatient {
     }
 
     public void meurt() {
-        return; //on fait quoi ???
+        service.enleverCreature(this);
     }
 }

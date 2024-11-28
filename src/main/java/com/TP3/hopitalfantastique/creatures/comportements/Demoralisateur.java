@@ -1,7 +1,7 @@
 package java.com.TP3.hopitalfantastique.creatures.comportements;
 
-import java.com.TP3.hopitalfantastique.services.ServiceMedical;
 import java.com.TP3.hopitalfantastique.creatures.CreaturePatient;
+import java.com.TP3.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
 import java.util.Random;
 

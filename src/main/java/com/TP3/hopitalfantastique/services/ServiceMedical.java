@@ -1,7 +1,7 @@
 package java.com.TP3.hopitalfantastique.services;
 
-import java.com.TP3.hopitalfantastique.creatures.CreaturePatient;
-import java.com.TP3.hopitalfantastique.creatures.maladies.Maladie;
+import java.com.hopitalfantastique.creatures.CreaturePatient;
+import java.com.hopitalfantastique.creatures.maladies.Maladie;
 import java.util.ArrayList;
 
 public class ServiceMedical {
@@ -10,8 +10,7 @@ public class ServiceMedical {
     private int capaciteMax;
     private int nombreCreature;
     private ArrayList<CreaturePatient> listeCreatures;
-    private String budget; //on garde?
-
+    private String budget;
 
     public ServiceMedical(String nom, float superficie, int capaciteMax, String budget) {
         this.nom = nom;
@@ -56,14 +55,13 @@ public class ServiceMedical {
         nombreCreature--;
     }
 
-    public void soignerCreature(CreaturePatient creature, Maladie maladie) {
-        creature.estSoignee(maladie.getNomComplet());
+    public void soignerCreature(CreaturePatient creature, String maladie) {
+        creature.estSoignee(maladie);
     }
 
     public void reviserBudget(String budget) {
         this.budget = budget;
     }
-
 
 
     @Override
