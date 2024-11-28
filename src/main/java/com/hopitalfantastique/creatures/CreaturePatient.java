@@ -1,11 +1,12 @@
 package java.com.hopitalfantastique.creatures;
 
+import java.com.hopitalfantastique.creatures.especesInterface.Race;
 import java.com.hopitalfantastique.creatures.maladies.Maladie;
 import java.com.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class CreaturePatient {
+public abstract class CreaturePatient implements Race {
     private String nom;
     private String sexe;
     private float poids;
