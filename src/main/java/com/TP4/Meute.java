@@ -1,10 +1,8 @@
-package java.com.TP4.meute;
+package java.com.TP4;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
-import static java.lang.Math.random;
 
 public class Meute {
     private String nom;
