@@ -103,7 +103,19 @@ public class Lycantrope {
         this.meute = meute;
     }
 
-
+    public void veillir(){
+        switch (this.catAge){
+            case "jeune":
+                this.setCatAge("adulte");
+                break;
+            case "adulte":
+                this.setCatAge("vieux");
+                break;
+            case "vieux":
+                this.getMeute().enleverLycantrope(this);
+                break;
+        }
+    }
 
     @Override
     public String toString() {
