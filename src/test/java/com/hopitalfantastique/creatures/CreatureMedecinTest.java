@@ -44,5 +44,10 @@ class CreatureMedecinTest {
         assertEquals("Creature Medecin Homme? 51", creatureMedecin.toString());
     }
 
+    @Test
+    public void testGetRace() {
+        assertEquals("Medecin", creatureMedecin.getRace());
+    }
+
     /* FAIRE LE RESTE DES TESTS AVEC LES CREATURES ET LES SERVICES */
 }
