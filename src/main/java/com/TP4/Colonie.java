@@ -2,7 +2,8 @@ package java.com.TP4;
 
 import java.util.ArrayList;
 
-public class colonie {
+public class Colonie {
+    private String nom;
     private ArrayList<Meute> listMeute;
     private String saison;
 
@@ -10,9 +11,18 @@ public class colonie {
         this.saison = saison;
     }
 
-    public colonie(ArrayList<Meute> listMeute, String saison) {
+    public Colonie(ArrayList<Meute> listMeute, String saison, String nom) {
+        this.nom = nom;
         this.listMeute = listMeute;
         this.saison = saison;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public ArrayList<Meute> getMeute() {

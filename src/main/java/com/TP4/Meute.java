@@ -53,8 +53,4 @@ public class Meute {
             jeuneLycanthrope = new Lycanthrope();
         }
     }
-
-
-
-
 }

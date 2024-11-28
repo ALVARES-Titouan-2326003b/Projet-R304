@@ -9,6 +9,15 @@ public class Lycanthrope {
     private int niveau;
     private int impetuosite;
     private Meute meute;
+    private String lieu;
+
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
 
     public Lycanthrope(String sexe, String catAge, int force, Meute meute) {
         this.sexe = sexe;
@@ -18,7 +27,7 @@ public class Lycanthrope {
         this.rang = "ω";
         this.niveau = 0;
         this.impetuosite = 1;
-        this.Meute = meute;
+        this.meute = meute;
     }
 
     public String getSexe() {
@@ -132,14 +141,15 @@ public class Lycanthrope {
     }
 
     public void domination(Lycanthrope lycanthrope){
-        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycantrope.getRang() == "α")){
+        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycanthrope.getRang() == "α")){
             if (this.getForce() > lycanthrope.getForce() || lycanthrope.getRang() == "ω"){
-                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycantrope.getRang()))
+                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycanthrope.getRang())) {
                     Meute tmp = this.meute;
-                    this.setMeute(lycanthrope.getMeute);
+                    this.setMeute(lycanthrope.getMeute());
                     lycanthrope.setMeute(tmp);
                     this.calculDomination();
                     lycanthrope.calculDomination();
+                }
             }
             else {
                 this.setFacteureDomination(this.getFacteureDomination()+1);
@@ -154,16 +164,19 @@ public class Lycanthrope {
         switch (type){
             case "appartenance":
                 this.meute.hurlement();
-                this.toString();
+                System.out.println(this.toString() + " a hurlé d'appartenance");
                 break;
             case "domination":
-                this.toString();
+                System.out.println(this.toString() + " a hurlé de domination");
                 break;
             case "soumission":
-                this.toString();
+                System.out.println(this.toString() + " a hurlé de soumission");
                 break;
-            case "agressivité":
-                this.toString();
+            case "agressivite":
+                System.out.println(this.toString() + " a hurlé d'agressivité");
+                break;
+            case "reponse":
+                System.out.println(this.toString() + " a hurlé en réponse");
                 break;
         }
     }
