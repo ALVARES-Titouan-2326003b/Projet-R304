@@ -68,6 +68,10 @@ public abstract class CreaturePatient implements Race {
         this.poids = poids;
     }
 
+    public float getTaille() { return taille; }
+
+    public void setTaille(float taille) { this.taille = taille; }
+
     public int getAge() {
         return age;
     }
@@ -110,7 +114,8 @@ public abstract class CreaturePatient implements Race {
     }
 
     public void semporte() {
-        ArrayList <CreaturePatient> listeAContaminer = null;
+        if (service == null) return;
+        ArrayList <CreaturePatient> listeAContaminer = new ArrayList<>();
         Random rand = new Random();
         int nombreAContaminer = rand.nextInt(5);
         ArrayList <CreaturePatient> listeCreatureService = service.getListeCreatures();
@@ -171,7 +176,5 @@ public abstract class CreaturePatient implements Race {
         return nom + " " + sexe + " " + poids + " " + taille + " " + indMoral + " " + age + " " + listeMaladie.toString();
     }
 
-    public void meurt() {
-        service.enleverCreature(this);
-    }
+    public void meurt() { if (service != null) service.enleverCreature(this); }
 }
