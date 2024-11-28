@@ -1,6 +1,6 @@
 package java.com.TP4;
 
-public class Lycantrope {
+public class Lycanthrope {
     private String sexe;
     private String catAge;
     private int force;
@@ -10,7 +10,7 @@ public class Lycantrope {
     private int impetuosite;
     private Meute meute;
 
-    public Lycantrope(String sexe, String catAge, int force, Meute meute) {
+    public Lycanthrope(String sexe, String catAge, int force, Meute meute) {
         this.sexe = sexe;
         this.catAge = catAge;
         this.force = force;
@@ -112,7 +112,7 @@ public class Lycantrope {
                 this.setCatAge("vieux");
                 break;
             case "vieux":
-                this.getMeute().enleverLycantrope(this);
+                this.getMeute().enleverLycanthrope(this);
                 break;
         }
     }
@@ -131,19 +131,19 @@ public class Lycantrope {
                 '}';
     }
 
-    public void domination(Lycantrope lycantrope){
-        if (this.getForce()*this.impetuosite >= lycantrope.getForce() && !(lycantrope.getSexe() == "femelle" && lycantrope.getRang() == "α")){
-            if (this.getForce() > lycantrope.getForce() || lycantrope.getRang() == "ω"){
+    public void domination(Lycanthrope lycanthrope){
+        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycantrope.getRang() == "α")){
+            if (this.getForce() > lycanthrope.getForce() || lycanthrope.getRang() == "ω"){
                 if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycantrope.getRang()))
                     Meute tmp = this.meute;
-                    this.setMeute(lycantrope.getMeute);
-                    lycantrope.setMeute(tmp);
+                    this.setMeute(lycanthrope.getMeute);
+                    lycanthrope.setMeute(tmp);
                     this.calculDomination();
-                    lycantrope.calculDomination();
+                    lycanthrope.calculDomination();
             }
             else {
                 this.setFacteureDomination(this.getFacteureDomination()+1);
-                lycantrope.setFacteureDomination(lycantrope.getFacteureDomination()-1);
+                lycanthrope.setFacteureDomination(lycanthrope.getFacteureDomination()-1);
             }
         }
     }
