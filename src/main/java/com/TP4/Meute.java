@@ -1,10 +1,8 @@
-package java.com.TP4.meute;
+package java.com.TP4;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-
-import static java.lang.Math.random;
 
 public class Meute {
     private String nom;
@@ -46,16 +44,30 @@ public class Meute {
     public void reproduction(){
         Random random = new Random();
         int porte = random.nextInt(7) + 1;
+        String sexe = random.nextBoolean() ? "M" : "F";
+        int force = random.nextInt(15) + 1 ;
+        String rang = "γ";
+
         Scanner sc = new Scanner(System.in);
 
         for (int i = 0; i < porte; i++) {
-            System.out.print("Lycanthrope: ");
-
-
-            jeuneLycanthrope = new Lycanthrope();
+            System.out.print("Lycanthrope ("+ sexe +" n°" + (i+1));
+            System.out.print("Force : " + force);
+            System.out.print("Rang : " + rang);
+            System.out.print("Nom :");
+            String nom = sc.nextLine();
+            Lycanthrope jeuneLycanthrope = new Lycanthrope(nom, sexe, "jeune", force, this);
+            lycanthropes.add(jeuneLycanthrope);
         }
     }
 
+    public void hurlement(Lycanthrope initial){
+        for (Lycanthrope lycanthrope : lycanthropes) {
+            if (lycanthrope != initial){
+                lycanthrope.hurler("reponse");
+            }
+        }
+    }
 
 
 

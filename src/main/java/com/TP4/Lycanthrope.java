@@ -1,24 +1,26 @@
 package java.com.TP4;
 
 public class Lycanthrope {
+    private String nom;
     private String sexe;
     private String catAge;
     private int force;
-    private int facteureDomination;
+    private int facteurDomination;
     private String rang;
     private int niveau;
     private int impetuosite;
     private Meute meute;
 
-    public Lycanthrope(String sexe, String catAge, int force, Meute meute) {
+    public Lycanthrope(String nom, String sexe, String catAge, int force, Meute meute) {
+        this.nom = nom;
         this.sexe = sexe;
         this.catAge = catAge;
         this.force = force;
-        this.facteureDomination = 0;
+        this.facteurDomination = 0;
         this.rang = "ω";
         this.niveau = 0;
         this.impetuosite = 1;
-        this.Meute = meute;
+        this.meute = meute;
     }
 
     public String getSexe() {
@@ -44,7 +46,7 @@ public class Lycanthrope {
             niveau += 5;
         }
         niveau += 24-"αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.getRang());
-        return niveau + this.facteureDomination + force;
+        return niveau + this.facteurDomination + force;
     }
 
     public String getCatAge() {
@@ -64,11 +66,11 @@ public class Lycanthrope {
     }
 
     public int getFacteureDomination() {
-        return facteureDomination;
+        return facteurDomination;
     }
 
     public void setFacteureDomination(int facteureDomination) {
-        this.facteureDomination = facteureDomination;
+        this.facteurDomination = facteureDomination;
     }
 
     public String getRang() {
@@ -123,7 +125,7 @@ public class Lycanthrope {
                 "sexe='" + sexe + '\'' +
                 ", catAge='" + catAge + '\'' +
                 ", force=" + force +
-                ", facteureDomination=" + facteureDomination +
+                ", facteureDomination=" + facteurDomination +
                 ", rang='" + rang + '\'' +
                 ", niveau=" + niveau +
                 ", impetuosite='" + impetuosite + '\'' +
@@ -171,7 +173,7 @@ public class Lycanthrope {
     public void quitteMeute(){
         this.meute = null;
         this.rang = null;
-        this.facteureDomination = 0;
+        this.facteurDomination = 0;
     }
 
     public void transforme() {

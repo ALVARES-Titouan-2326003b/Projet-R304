@@ -2,7 +2,7 @@ package java.com.TP4;
 
 import java.util.ArrayList;
 
-public class colonie {
+public class Colonie {
     private ArrayList<Meute> listMeute;
     private String saison;
 
@@ -10,7 +10,7 @@ public class colonie {
         this.saison = saison;
     }
 
-    public colonie(ArrayList<Meute> listMeute, String saison) {
+    public Colonie(ArrayList<Meute> listMeute, String saison) {
         this.listMeute = listMeute;
         this.saison = saison;
     }
