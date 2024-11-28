@@ -163,8 +163,8 @@ public class Lycanthrope {
     public void hurler(String type){
         switch (type){
             case "appartenance":
-                this.meute.hurlement();
                 System.out.println(this.toString() + " a hurlé d'appartenance");
+                this.meute.hurlement(this);
                 break;
             case "domination":
                 System.out.println(this.toString() + " a hurlé de domination");
