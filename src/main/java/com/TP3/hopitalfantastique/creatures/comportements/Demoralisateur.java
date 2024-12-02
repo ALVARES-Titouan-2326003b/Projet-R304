@@ -1,4 +1,4 @@
-package com.TP3.hopitalfantastique.creatures.comportements;
+package java.com.TP3.hopitalfantastique.creatures.comportements;
 
 import com.TP3.hopitalfantastique.creatures.CreaturePatient;
 import com.TP3.hopitalfantastique.services.ServiceMedical;

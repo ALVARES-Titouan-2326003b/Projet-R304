@@ -1,4 +1,4 @@
-package java.com.TP4;
+package com.TP4;
 
 public class Lycanthrope {
     private String nom;
@@ -11,7 +11,7 @@ public class Lycanthrope {
     private int impetuosite;
     private Meute meute;
 
-    public Lycanthrope(String nom, String sexe, String catAge, int force, Meute meute) {
+    public Lycanthrope(String nom, String sexe, String catAge, int force) {
         this.nom = nom;
         this.sexe = sexe;
         this.catAge = catAge;
@@ -20,7 +20,7 @@ public class Lycanthrope {
         this.rang = "ω";
         this.niveau = 0;
         this.impetuosite = 1;
-        this.meute = meute;
+        this.meute = null;
     }
 
     public String getSexe() {
@@ -47,6 +47,10 @@ public class Lycanthrope {
         }
         niveau += 24-"αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.getRang());
         return niveau + this.facteurDomination + force;
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public String getCatAge() {
@@ -105,7 +109,7 @@ public class Lycanthrope {
         this.meute = meute;
     }
 
-    public void veillir(){
+    public void vieillir(){
         switch (this.catAge){
             case "jeune":
                 this.setCatAge("adulte");
@@ -134,14 +138,15 @@ public class Lycanthrope {
     }
 
     public void domination(Lycanthrope lycanthrope){
-        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycantrope.getRang() == "α")){
+        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycanthrope.getRang() == "α")){
             if (this.getForce() > lycanthrope.getForce() || lycanthrope.getRang() == "ω"){
-                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycantrope.getRang()))
+                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycanthrope.getRang())) {
                     Meute tmp = this.meute;
-                    this.setMeute(lycanthrope.getMeute);
+                    this.setMeute(lycanthrope.getMeute());
                     lycanthrope.setMeute(tmp);
                     this.calculDomination();
                     lycanthrope.calculDomination();
+                }
             }
             else {
                 this.setFacteureDomination(this.getFacteureDomination()+1);
@@ -155,7 +160,7 @@ public class Lycanthrope {
     public void hurler(String type){
         switch (type){
             case "appartenance":
-                this.meute.hurlement();
+                this.meute.hurlement(this);
                 this.toString();
                 break;
             case "domination":

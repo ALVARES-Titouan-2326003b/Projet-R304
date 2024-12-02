@@ -1,4 +1,4 @@
-package java.com.TP4;
+package com.TP4;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,9 +32,8 @@ public class Meute {
         lycanthropes.add(idv);
     }
     public void enleverLycanthrope(Lycanthrope idv){
-        for (Lycanthrope lycanthrope : lycanthropes) {
-            lycanthropes.remove(idv);
-        }
+        lycanthropes.remove(idv);
+        idv.setMeute(null);
     }
 
     public ArrayList<Lycanthrope> getLycanthropes() {
@@ -56,10 +55,50 @@ public class Meute {
             System.out.print("Rang : " + rang);
             System.out.print("Nom :");
             String nom = sc.nextLine();
-            Lycanthrope jeuneLycanthrope = new Lycanthrope(nom, sexe, "jeune", force, this);
+            Lycanthrope jeuneLycanthrope = new Lycanthrope(nom, sexe, "jeune", force);
+            this.ajouterLycanthrope(jeuneLycanthrope);
             lycanthropes.add(jeuneLycanthrope);
         }
     }
+
+    public void quicksortMeute(int gauche, int droite) {
+        if (gauche < droite) {
+            int pivotIndex = partition(gauche, droite);
+            quicksortMeute(gauche, pivotIndex - 1);
+            quicksortMeute(pivotIndex + 1, droite);
+        }
+    }
+
+    private int partition(int gauche, int droite) {
+        String pivot = lycanthropes.get(droite).getRang();
+        int i = gauche - 1;
+        for (int j = gauche; j < droite; j++) {
+            if (compareRang(lycanthropes.get(j).getRang(), pivot) <= 0) {
+                i++;
+                swap(i, j);
+            }
+        }
+        swap(i + 1, droite);
+        return i + 1;
+    }
+
+    private void swap(int i, int j) {
+        Lycanthrope temp = lycanthropes.get(i);
+        lycanthropes.set(i, lycanthropes.get(j));
+        lycanthropes.set(j, temp);
+    }
+
+    private int compareRang(String rang1, String rang2) {
+        String rang = "αβγδεζηθικλμνξοπρσςτυφχψω";
+        return Integer.compare(rang.indexOf(rang1), rang.indexOf(rang2));
+    }
+
+    public void faitVieillir(){
+        for (Lycanthrope lycanthrope : lycanthropes) {
+            lycanthrope.vieillir();
+        }
+    }
+
 
     public void hurlement(Lycanthrope initial){
         for (Lycanthrope lycanthrope : lycanthropes) {
