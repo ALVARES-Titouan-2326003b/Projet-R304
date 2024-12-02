@@ -1,4 +1,4 @@
-package com.TP4;
+package java.com.TP4;
 
 public class Lycanthrope {
     private String nom;
@@ -11,7 +11,17 @@ public class Lycanthrope {
     private int impetuosite;
     private Meute meute;
 
-    public Lycanthrope(String nom, String sexe, String catAge, int force) {
+    /**
+     * Constructeur de la classe Lycanthrope.
+     * Initialise un Lycanthrope avec les informations de nom, sexe, catégorie d'âge, force et meute.
+     *
+     * @param nom Le nom du Lycanthrope.
+     * @param sexe Le sexe du Lycanthrope.
+     * @param catAge La catégorie d'âge du Lycanthrope.
+     * @param force La force du Lycanthrope.
+     * @param meute La meute à laquelle appartient le Lycanthrope.
+     */
+    public Lycanthrope(String nom, String sexe, String catAge, int force, Meute meute) {
         this.nom = nom;
         this.sexe = sexe;
         this.catAge = catAge;
@@ -20,21 +30,32 @@ public class Lycanthrope {
         this.rang = "ω";
         this.niveau = 0;
         this.impetuosite = 1;
-        this.meute = null;
+        this.meute = meute;
     }
 
     public String getSexe() {
         return sexe;
     }
-
     public void setSexe(String sexe) {
         this.sexe = sexe;
     }
 
-    public int calculDomination(){
+    /**
+     * Calcule le niveau de domination du Lycanthrope.
+     * Cette méthode devra être affinée en fonction des critères de domination.
+     *
+     * @return Le niveau de domination.
+     */
+    public int calculDomination() {
         return 0; // a reflechir
     }
 
+    /**
+     * Calcule le niveau d'un Lycanthrope en fonction de son âge, de son rang et de sa force.
+     * Le niveau augmente en fonction de la catégorie d'âge et du rang du Lycanthrope.
+     *
+     * @return Le niveau total du Lycanthrope.
+     */
     public int calculNiveau(){
         niveau = 0;
         if (this.catAge == "jeune"){
@@ -47,10 +68,6 @@ public class Lycanthrope {
         }
         niveau += 24-"αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.getRang());
         return niveau + this.facteurDomination + force;
-    }
-
-    public String getNom() {
-        return nom;
     }
 
     public String getCatAge() {
@@ -109,7 +126,10 @@ public class Lycanthrope {
         this.meute = meute;
     }
 
-    public void vieillir(){
+    /**
+     * Vieillit le Lycanthrope. Change sa catégorie d'âge ou le retire de la meute si nécessaire.
+     */
+    public void veillir(){
         switch (this.catAge){
             case "jeune":
                 this.setCatAge("adulte");
@@ -123,30 +143,23 @@ public class Lycanthrope {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Lycantrope{" +
-                "sexe='" + sexe + '\'' +
-                ", catAge='" + catAge + '\'' +
-                ", force=" + force +
-                ", facteureDomination=" + facteurDomination +
-                ", rang='" + rang + '\'' +
-                ", niveau=" + niveau +
-                ", impetuosite='" + impetuosite + '\'' +
-                ", nomMeute='" + meute.getNom() + '\'' +
-                '}';
-    }
 
+
+    /**
+     * Effectue une tentative de domination entre deux Lycanthropes.
+     * Le Lycanthrope actuel tente de dominer un autre Lycanthrope en fonction de leur force et rang.
+     *
+     * @param lycanthrope Le Lycanthrope que l'on tente de dominer.
+     */
     public void domination(Lycanthrope lycanthrope){
-        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycanthrope.getRang() == "α")){
+        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycantrope.getRang() == "α")){
             if (this.getForce() > lycanthrope.getForce() || lycanthrope.getRang() == "ω"){
-                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycanthrope.getRang())) {
+                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycantrope.getRang()))
                     Meute tmp = this.meute;
-                    this.setMeute(lycanthrope.getMeute());
+                    this.setMeute(lycanthrope.getMeute);
                     lycanthrope.setMeute(tmp);
                     this.calculDomination();
                     lycanthrope.calculDomination();
-                }
             }
             else {
                 this.setFacteureDomination(this.getFacteureDomination()+1);
@@ -156,7 +169,12 @@ public class Lycanthrope {
     }
 
 
-
+    /**
+     * Fait hurler le Lycanthrope en fonction du type de hurlement.
+     * Cela peut être pour marquer l'appartenance à la meute, la domination, la soumission ou l'agressivité.
+     *
+     * @param type Le type de hurlement ("appartenance", "domination", "soumission", "agressivité").
+     */
     public void hurler(String type){
         switch (type){
             case "appartenance":
@@ -174,17 +192,32 @@ public class Lycanthrope {
                 break;
         }
     }
-
+    /**
+     * Fait quitter le Lycanthrope de la meute.
+     * Cette méthode supprime la référence à la meute et remet à zéro les attributs liés à la domination.
+     */
     public void quitteMeute(){
         this.meute = null;
         this.rang = null;
         this.facteurDomination = 0;
     }
 
-    public void transforme() {
-        if (niveau >= 100){
-            // this.   a faire
-        }
-
-    }
+    /**
+     * Méthode qui retourne une représentation textuelle du Lycanthrope.
+     * Cela inclut son sexe, sa catégorie d'âge, sa force, son rang, son niveau, et la meute à laquelle il appartient.
+     *
+     * @return La représentation textuelle du Lycanthrope.
+     */
+    @Override
+    public String toString() {
+        return "Lycantrope{" +
+                "sexe='" + sexe + '\'' +
+                ", catAge='" + catAge + '\'' +
+                ", force=" + force +
+                ", facteureDomination=" + facteurDomination +
+                ", rang='" + rang + '\'' +
+                ", niveau=" + niveau +
+                ", impetuosite='" + impetuosite + '\'' +
+                ", nomMeute='" + meute.getNom() + '\'' +
+                '}';
 }
