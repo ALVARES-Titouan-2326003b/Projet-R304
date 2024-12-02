@@ -112,4 +112,17 @@ class CreaturePatientTest {
     public void testToString() {
         assertEquals("Creature Patient Homme? 72.1 182.15 10 51 []", creaturePatient.toString());
     }
+
+    @Test
+    public void testMeurt() {
+        ServiceMedical service = new ServiceMedical("Service", 120f, 50, "Insuffisant");
+        service.ajouterCreature(creaturePatient);
+        assertEquals(service, creaturePatient.getService());
+        assertEquals(1, service.getNombreCreature());
+        creaturePatient.meurt();
+        assertNull(creaturePatient.getService());
+        assertEquals(0, service.getNombreCreature());
+    }
+
+    // plus qu'à tester attend()
 }
