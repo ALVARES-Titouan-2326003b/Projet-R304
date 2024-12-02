@@ -1,5 +1,6 @@
-package java.com.TP4;
+package com.TP4;
 
+/*
 public class Lycanthrope {
     private String nom;
     private String sexe;
@@ -183,3 +184,4 @@ public class Lycanthrope {
 
     }
 }
+*/

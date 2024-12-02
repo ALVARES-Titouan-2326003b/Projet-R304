@@ -156,11 +156,13 @@ public abstract class CreaturePatient implements Race {
     }
 
     public void estSoignee(String nomMaladieComplet) {
-        for (Maladie maladie1 : listeMaladie) {
-            if (maladie1.getNomComplet().equals(nomMaladieComplet)) {
-                listeMaladie.remove(maladie1);
+        ArrayList<Maladie> aRetirer = new ArrayList<>();
+        for (Maladie maladie : listeMaladie) {
+            if (maladie.getNomComplet().equals(nomMaladieComplet)) {
+                aRetirer.add(maladie);
             }
         }
+        for (Maladie maladie : aRetirer) listeMaladie.remove(maladie);
     }
 
     public boolean possedeMaladie(String nomMaladieComplet) {
@@ -177,5 +179,10 @@ public abstract class CreaturePatient implements Race {
         return nom + " " + sexe + " " + poids + " " + taille + " " + indMoral + " " + age + " " + listeMaladie.toString();
     }
 
-    public void meurt() { if (service != null) service.enleverCreature(this); }
+    public void meurt() {
+        if (service != null) {
+            service.enleverCreature(this);
+            service = null;
+        }
+    }
 }

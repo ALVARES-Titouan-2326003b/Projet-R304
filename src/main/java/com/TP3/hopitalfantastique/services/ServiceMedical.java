@@ -1,7 +1,7 @@
 package com.TP3.hopitalfantastique.services;
 
 import com.TP3.hopitalfantastique.creatures.CreaturePatient;
-import com.TP3.hopitalfantastique.creatures.maladies.Maladie;
+import com.TP3.hopitalfantastique.creatures.Maladie;
 import java.util.ArrayList;
 
 public class ServiceMedical {
@@ -41,18 +41,28 @@ public class ServiceMedical {
         this.nombreCreature ++;
     }
 
-    public boolean ajouterCreature(CreaturePatient creature) {
-        if (listeCreatures.size() < capaciteMax) {
-            listeCreatures.add(creature);
-            nombreCreature++;
-            return true;
-        }
-        else return false;
+    public String getBudget() {
+        return budget;
     }
 
-    public void enleverCreature(CreaturePatient creature) {
-        listeCreatures.remove(creature);
-        nombreCreature--;
+    public boolean ajouterCreature(CreaturePatient creature) {
+        if (listeCreatures.size() < capaciteMax) {
+            if (creature.getService() != null) creature.getService().enleverCreature(creature);
+            if (listeCreatures.add(creature)) {
+                creature.setService(this);
+                nombreCreature++;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean enleverCreature(CreaturePatient creature) {
+        if (listeCreatures.remove(creature)) {
+            creature.setService(null);
+            nombreCreature--;
+            return true;
+        } return false;
     }
 
     public void soignerCreature(CreaturePatient creature, String maladie) {

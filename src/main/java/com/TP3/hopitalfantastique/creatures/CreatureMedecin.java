@@ -61,7 +61,7 @@ public abstract class CreatureMedecin implements Race {
 
     public void soigneCreature (CreaturePatient creaturePatient, String maladie) {
         if (this.getRace() == creaturePatient.getRace()) {
-            creaturePatient.getService().soignerCreature(creaturePatient, maladie);
+            creaturePatient.estSoignee(maladie);
         }
     }
 }

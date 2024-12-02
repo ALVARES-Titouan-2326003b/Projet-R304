@@ -1,5 +1,5 @@
-package java.com.TP4;
-
+package com.TP4;
+/*
 import java.util.ArrayList;
 
 public class Colonie {
@@ -69,3 +69,4 @@ public class Colonie {
         }
     }
 }
+*/
