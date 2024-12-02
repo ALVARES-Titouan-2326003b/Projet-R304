@@ -1,4 +1,4 @@
-package java.com.TP3.hopitalfantastique.creatures.maladies;
+package com.TP3.hopitalfantastique.creatures.maladies;
 
 public class Maladie {
     private static final String nomDefaut = "Nouvelle Maladie";
@@ -28,14 +28,13 @@ public class Maladie {
 
     public Maladie(String nomComplet, int lvlLetal, int lvlActuel) {
         this(nomComplet, lvlLetal);
-        if (lvlActuel > lvlLetal || lvlActuel <= 0) this.lvlActuel = lvlActuelDefaut;
+        if (lvlActuel > this.lvlLetal || lvlActuel <= 0) this.lvlActuel = lvlActuelDefaut;
         else this.lvlActuel = lvlActuel;
     }
 
     public Maladie(String nomComplet, String nomAbrege, int lvlLetal, int lvlActuel) {
-        this(nomComplet, nomAbrege, lvlLetal);
-        if (lvlActuel > lvlLetal || lvlActuel <= 0) this.lvlActuel = lvlActuelDefaut;
-        else this.lvlActuel = lvlActuel;
+        this(nomComplet, lvlLetal, lvlActuel);
+        this.nomAbrege = nomAbrege;
     }
 
     public String getNomComplet() {
@@ -71,7 +70,7 @@ public class Maladie {
     }
 
     public boolean estLetal(){
-        if (lvlLetal == lvlActuel){
+        if (lvlLetal <= lvlActuel){
             return true;
         }
         return false;

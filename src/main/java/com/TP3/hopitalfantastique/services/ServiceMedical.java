@@ -1,7 +1,7 @@
-package java.com.TP3.hopitalfantastique.services;
+package com.TP3.hopitalfantastique.services;
 
-import java.com.hopitalfantastique.creatures.CreaturePatient;
-import java.com.hopitalfantastique.creatures.maladies.Maladie;
+import com.TP3.hopitalfantastique.creatures.CreaturePatient;
+import com.TP3.hopitalfantastique.creatures.maladies.Maladie;
 import java.util.ArrayList;
 
 public class ServiceMedical {

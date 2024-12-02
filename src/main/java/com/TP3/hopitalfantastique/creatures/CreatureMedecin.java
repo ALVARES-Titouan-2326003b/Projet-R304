@@ -1,7 +1,7 @@
-package java.com.TP3.hopitalfantastique.creatures;
+package com.TP3.hopitalfantastique.creatures;
 
-import java.com.TP3.hopitalfantastique.creatures.especesInterface.Race;
-import java.com.TP3.hopitalfantastique.services.ServiceMedical;
+import com.TP3.hopitalfantastique.creatures.especesInterface.Race;
+import com.TP3.hopitalfantastique.services.ServiceMedical;
 
 public abstract class CreatureMedecin implements Race {
     private String nom;

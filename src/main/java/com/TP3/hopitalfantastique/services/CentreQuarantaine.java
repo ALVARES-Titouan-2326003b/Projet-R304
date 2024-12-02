@@ -1,7 +1,7 @@
-package java.com.TP3.hopitalfantastique.services;
+package com.TP3.hopitalfantastique.services;
 
-import java.com.TP3.hopitalfantastique.creatures.CreaturePatient;
-import java.com.TP3.hopitalfantastique.creatures.comportements.Bestial;
+import com.TP3.hopitalfantastique.creatures.CreaturePatient;
+import com.TP3.hopitalfantastique.creatures.comportements.Bestial;
 import java.util.ArrayList;
 
 public class CentreQuarantaine extends ServiceMedical{

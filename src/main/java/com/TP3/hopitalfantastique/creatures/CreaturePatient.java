@@ -1,8 +1,8 @@
-package java.com.TP3.hopitalfantastique.creatures;
+package com.TP3.hopitalfantastique.creatures;
 
-import java.com.TP3.hopitalfantastique.creatures.especesInterface.Race;
-import java.com.TP3.hopitalfantastique.creatures.maladies.Maladie;
-import java.com.TP3.hopitalfantastique.services.ServiceMedical;
+import com.TP3.hopitalfantastique.creatures.especesInterface.Race;
+import com.TP3.hopitalfantastique.creatures.Maladie;
+import com.TP3.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -69,6 +69,10 @@ public abstract class CreaturePatient implements Race {
         this.poids = poids;
     }
 
+    public float getTaille() { return taille; }
+
+    public void setTaille(float taille) { this.taille = taille; }
+
     public int getAge() {
         return age;
     }
@@ -111,7 +115,8 @@ public abstract class CreaturePatient implements Race {
     }
 
     public void semporte() {
-        ArrayList <CreaturePatient> listeAContaminer = null;
+        if (service == null) return;
+        ArrayList <CreaturePatient> listeAContaminer = new ArrayList<>();
         Random rand = new Random();
         int nombreAContaminer = rand.nextInt(5);
         ArrayList <CreaturePatient> listeCreatureService = service.getListeCreatures();
@@ -172,7 +177,5 @@ public abstract class CreaturePatient implements Race {
         return nom + " " + sexe + " " + poids + " " + taille + " " + indMoral + " " + age + " " + listeMaladie.toString();
     }
 
-    public void meurt() {
-        service.enleverCreature(this);
-    }
+    public void meurt() { if (service != null) service.enleverCreature(this); }
 }

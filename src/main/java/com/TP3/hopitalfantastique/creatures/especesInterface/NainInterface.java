@@ -1,4 +1,4 @@
-package java.com.TP3.hopitalfantastique.creatures.especesInterface;
+package com.TP3.hopitalfantastique.creatures.especesInterface;
 
 public interface NainInterface extends Race {
     String race = "Nain";

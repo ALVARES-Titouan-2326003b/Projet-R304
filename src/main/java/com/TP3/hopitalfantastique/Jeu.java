@@ -1,15 +1,18 @@
-package java.com.TP3.hopitalfantastique;
+package com.TP3.hopitalfantastique;
 
-import java.com.TP3.hopitalfantastique.creatures.CreatureMedecin;
-import java.com.TP3.hopitalfantastique.creatures.medecin.ElfMedecin;
-import java.com.TP3.hopitalfantastique.services.CentreQuarantaine;
-import java.com.TP3.hopitalfantastique.services.Crypte;
-import java.com.TP3.hopitalfantastique.services.ServiceMedical;
-import java.com.TP3.hopitalfantastique.creatures.CreaturePatient;
-import java.com.TP3.hopitalfantastique.creatures.medecin.OrqueMedecin;
-import java.com.TP3.hopitalfantastique.creatures.patient.OrquePatient;
-import java.com.TP3.hopitalfantastique.creatures.patient.VampirePatient;
-import java.com.TP3.hopitalfantastique.creatures.patient.ZombiePatient;
+import com.TP3.hopitalfantastique.creatures.CreatureMedecin;
+import com.TP3.hopitalfantastique.creatures.Maladie;
+import com.TP3.hopitalfantastique.creatures.medecin.ElfMedecin;
+import com.TP3.hopitalfantastique.services.CentreQuarantaine;
+import com.TP3.hopitalfantastique.services.Crypte;
+import com.TP3.hopitalfantastique.services.ServiceMedical;
+import com.TP3.hopitalfantastique.creatures.CreaturePatient;
+import com.TP3.hopitalfantastique.creatures.medecin.OrqueMedecin;
+import com.TP3.hopitalfantastique.creatures.patient.OrquePatient;
+import com.TP3.hopitalfantastique.creatures.patient.VampirePatient;
+import com.TP3.hopitalfantastique.creatures.patient.ZombiePatient;
+
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
@@ -150,9 +153,33 @@ public class Jeu {
         }
 
         ServiceMedical service = services.get(choixService);
-        if (service.getNombreCreatures() > 0) {
+        if (service.getNombreCreature() > 0) {
+            System.out.println("Choisissez une créature à soigner :");
+            ArrayList<CreaturePatient> patients = service.getListeCreatures();
+            for (int i = 0; i < services.size(); ++i) {
+                if (!patients.get(i).getListeMaladie().isEmpty()) System.out.println((i + 1) + ". " + patients.get(i));
+            }
+            int choixCreature = scanner.nextInt() - 1;
+            if (choixCreature < 0 || choixCreature >= patients.size()) {
+                System.out.println("Choix invalide.");
+                return;
+            }
+            CreaturePatient patient = patients.get(choixCreature);
+
+            System.out.println("Choisissez la maladie à soigner :");
+            ArrayList<Maladie> maladies = patient.getListeMaladie();
+            for (int i = 0; i < maladies.size(); ++i) {
+                System.out.println((i + 1) + ". " + maladies.get(i).getNomComplet());
+            }
+            int choixMaladie = scanner.nextInt() - 1;
+            if (choixMaladie < 0 || choixMaladie >= maladies.size()) {
+                System.out.println("Choix invalide.");
+                return;
+            }
+            String maladie = maladies.get(choixMaladie).getNomComplet();
+
             System.out.println("Un médecin soigne une créature de " + service.getNom() + "...");
-            service.soignerCreatures(); // Implémentation dans la classe ServiceMedical
+            service.soignerCreature(patient, maladie); // Implémentation dans la classe ServiceMedical
             actionsRestantes--;
         } else {
             System.out.println("Aucune créature à soigner dans ce service.");
@@ -161,6 +188,7 @@ public class Jeu {
 
     private void reviserBudget(Scanner scanner) {
         System.out.println("\nChoisissez un service médical pour réviser son budget :");
+        String nouveauBudget = scanner.nextLine();
         for (int i = 0; i < services.size(); i++) {
             System.out.println((i + 1) + ". " + services.get(i).getNom());
         }
@@ -172,7 +200,7 @@ public class Jeu {
         }
 
         ServiceMedical service = services.get(choixService);
-        service.reviserBudget();
+        service.reviserBudget(nouveauBudget);
         actionsRestantes--;
     }
 
@@ -182,13 +210,14 @@ public class Jeu {
 
 
     private void progresserUnJour() {
-        jour++;
+        ++jour;
         Random random = new Random();
+        ArrayList<String> budgets = new ArrayList<>(Arrays.asList("Inexistant", "Mediocre", "Insuffisant", "Faible"));
 
         // Modifications aléatoires des créatures
         for (CreaturePatient creature : fileAttente) {
             if (random.nextBoolean()) {
-                creature.tombeMalade();
+                creature.tombeMalade(new Maladie());
                 System.out.println(creature.getNom() + " est tombé(e) malade.");
             }
         }
@@ -196,7 +225,7 @@ public class Jeu {
         // Modifications aléatoires des services médicaux
         for (ServiceMedical service : services) {
             if (random.nextBoolean()) {
-                service.reviserBudget();
+                service.reviserBudget(budgets.get(random.nextInt(budgets.size())));
             }
         }
     }
@@ -218,9 +247,9 @@ public class Jeu {
         medecins.add(new OrqueMedecin("Dr. Gruzog", "M", 300));
 
         // Ajout de quelques créatures en attente
-        fileAttente.add(new OrquePatient("Grog", "M", 120.0f, 180.0f, 35, liste1));
-        fileAttente.add(new ZombiePatient("Zed", "M", 90.0f, 170.0f, 200, liste2));
-        fileAttente.add(new VampirePatient("Lestat", "M", 80.0f, 175.0f, 150, liste3));
+        fileAttente.add(new OrquePatient("Grog", "M", 120.0f, 180.0f, 35, new ArrayList<>(), 10));
+        fileAttente.add(new ZombiePatient("Zed", "M", 90.0f, 170.0f, 200, new ArrayList<>(), 10));
+        fileAttente.add(new VampirePatient("Lestat", "M", 80.0f, 175.0f, 150, new ArrayList<>(), 10));
     }
 }
 

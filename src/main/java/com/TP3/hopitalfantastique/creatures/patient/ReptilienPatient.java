@@ -1,8 +1,8 @@
-package java.com.TP3.hopitalfantastique.creatures.patient;
+package com.TP3.hopitalfantastique.creatures.patient;
 
-import java.com.TP3.hopitalfantastique.creatures.CreaturePatient;
-import java.com.TP3.hopitalfantastique.creatures.especesInterface.ReptilienInterface;
-import java.com.TP3.hopitalfantastique.creatures.maladies.Maladie;
+import com.TP3.hopitalfantastique.creatures.CreaturePatient;
+import com.TP3.hopitalfantastique.creatures.especesInterface.ReptilienInterface;
+import com.TP3.hopitalfantastique.creatures.Maladie;
 import java.util.ArrayList;
 
 public class ReptilienPatient extends CreaturePatient implements ReptilienInterface {
