@@ -1,4 +1,4 @@
-package java.com.TP4;
+package com.TP4;
 
 public class Lycanthrope {
     private String nom;
@@ -134,9 +134,10 @@ public class Lycanthrope {
     }
 
     public void domination(Lycanthrope lycanthrope){
-        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycantrope.getRang() == "α")){
+
+        if (this.getForce()*this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycanthrope.getRang() == "α")){
             if (this.getForce() > lycanthrope.getForce() || lycanthrope.getRang() == "ω"){
-                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycantrope.getRang()))
+                if("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycanthrope.getRang()))
                     Meute tmp = this.meute;
                     this.setMeute(lycanthrope.getMeute);
                     lycanthrope.setMeute(tmp);

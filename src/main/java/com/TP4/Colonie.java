@@ -1,4 +1,4 @@
-package java.com.TP4;
+package com.TP4;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class Colonie {
                 break;
             case "hiver":
                 for (Meute meute: listMeute){
-                    meute.evolutionHiérarchie;
+                    meute.evolutionHiérarchie();
                     meute.faitHumain();
                 }
                 setSaison("printemps");

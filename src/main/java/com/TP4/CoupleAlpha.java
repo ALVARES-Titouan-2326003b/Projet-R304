@@ -1,4 +1,4 @@
-package java.com.TP4;
+package com.TP4;
 
 public class CoupleAlpha {
     private Lycanthrope maleAlpha;
