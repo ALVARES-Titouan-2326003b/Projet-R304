@@ -4,7 +4,7 @@
 ALVARES Titouan, PELLET Casimir et TRAN Thomas 
 
 ### Projet :
-Ce readme présente la composition produite dans le cadre du cours de qualité de développement. Il demande la réalisation du [TD3]([https://docs.framasoft.org/fr/grav/](https://mickael-martin-nevot.com/univ-amu/iut/but-informatique/qualite-de-developpement/s45-td3-java-cas-pratique.pdf)) et du [TD4]([https://mickael-martin-nevot.com/univ-amu/iut/but-informatique/qualite-de-developpement/s45-td4-algorithmique-avancee.pdf]) du même cours séparément ainsi que certaines consignes supplémentaires évoquées dans le [sujet global]([https://mickael-martin-nevot.com/univ-amu/iut/but-informatique/qualite-de-developpement/s45-projet.pdf]).
+Ce readme présente la composition produite dans le cadre du cours de qualité de développement. Il demande la réalisation séparément des [TD3]([https://docs.framasoft.org/fr/grav/](https://mickael-martin-nevot.com/univ-amu/iut/but-informatique/qualite-de-developpement/s45-td3-java-cas-pratique.pdf)) et [TD4]([https://mickael-martin-nevot.com/univ-amu/iut/but-informatique/qualite-de-developpement/s45-td4-algorithmique-avancee.pdf]) du même cours ainsi que certaines consignes supplémentaires évoquées dans le [sujet global]([https://mickael-martin-nevot.com/univ-amu/iut/but-informatique/qualite-de-developpement/s45-projet.pdf]).
 
 ### Fichiers présents : 
 Vous trouverez à la racine de ce Github :
