@@ -35,6 +35,7 @@ Le rendu de projet nous semble correct dans le code effectué malgrès l'absence
 * Mise en place d'une structure fiable et adaptée initialement.
 * Lecture plus approfondie du sujet et création d'une synthèse de celui-ci afin de ne pas oublier des pans importants du sujet.
 * Temps très limité pour la réalisation d'un projet trop ambitieux
+
 Cependant, on peut noter :
 * une charge et un temps de travail quasiment égal dans le groupe
 * une bonne cohésion et des phases d'échanges et de réflexion commune régulières
