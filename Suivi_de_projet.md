@@ -31,7 +31,7 @@
 * Création des premiers rendus de spécification (1 personne)
 
 ## Synthèse :
-Le rendu de projet nous semble correct dans le code effectué malgrès l'absence de certaines demandes du sujet (comme la possibilité de "jouer"). Plusieurs erreurs aurait pu être évitées afin de permettre une meilleure avancée du projet : 
+Le rendu de projet nous semble correct dans le code effectué malgré l'absence de certaines demandes du sujet (comme la possibilité de "jouer"). Plusieurs erreurs auraient pu être évitées afin de permettre une meilleure avancée du projet : 
 * Mise en place d'une structure fiable et adaptée initialement.
 * Lecture plus approfondie du sujet et création d'une synthèse de celui-ci afin de ne pas oublier des pans importants du sujet.
 * Temps très limité pour la réalisation d'un projet trop ambitieux
