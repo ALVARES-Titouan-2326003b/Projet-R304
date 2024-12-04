@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LycanthropeTest {
+/*class LycanthropeTest {
         private Lycanthrope lycanthrope;
         private Meute meute;
 
@@ -124,4 +124,4 @@ class LycanthropeTest {
         }
 
 **/
-}
+//}

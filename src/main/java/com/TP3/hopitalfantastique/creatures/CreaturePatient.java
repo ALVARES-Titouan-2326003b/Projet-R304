@@ -1,7 +1,6 @@
 package com.TP3.hopitalfantastique.creatures;
 
 import com.TP3.hopitalfantastique.creatures.especesInterface.Race;
-import com.TP3.hopitalfantastique.creatures.Maladie;
 import com.TP3.hopitalfantastique.services.ServiceMedical;
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,6 +15,7 @@ public abstract class CreaturePatient implements Race {
     private int numHurlement;    // Compteur du nombre de hurlements
     private ArrayList<Maladie> listeMaladie;  // Liste des maladies de la créature
     private ServiceMedical service;  // Service médical auquel la créature est associée
+    private double factContamination;   // Facteur de contamination correspondant à la probabilité de contaminer une autre créature
 
     /**
      * Constructeur pour initialiser les attributs de la créature patient.
@@ -37,6 +37,7 @@ public abstract class CreaturePatient implements Race {
         this.indMoral = indMoral;
         this.numHurlement = 0;   // Initialisation du nombre de hurlements à 0
         this.service = null;     // Initialisation du service médical à null
+        this.factContamination = 0.15;  // Initialisation du facteur de contamination à 0.15
     }
 
     // Getters et Setters pour chaque attribut
@@ -113,12 +114,20 @@ public abstract class CreaturePatient implements Race {
         return listeMaladie;
     }
 
+    public double getFactContamination() {
+        return factContamination;
+    }
+
+    public void setFactContamination(double factContamination) {
+        this.factContamination = factContamination;
+    }
+
     /**
      * La créature attend, si son moral est positif, il baisse. Si son moral est nul ou négatif, elle hurle.
      */
     public void attendre() {
         if (indMoral > 0) {
-            indMoral--;   // Diminue l'indicateur de moral
+            --indMoral;   // Diminue l'indicateur de moral
         } else {
             hurler();     // Si le moral est faible, la créature hurle
         }
@@ -131,7 +140,7 @@ public abstract class CreaturePatient implements Race {
         if (numHurlement > 3) {
             semporte();  // Si la créature a trop hurlé, elle se met en colère
         } else {
-            numHurlement++;  // Incrémente le nombre de hurlements
+            ++numHurlement;  // Incrémente le nombre de hurlements
         }
     }
 
@@ -140,42 +149,52 @@ public abstract class CreaturePatient implements Race {
      */
     public void semporte() {
         if (service == null) return;  // Si la créature n'est associée à aucun service, rien ne se passe
-        ArrayList <CreaturePatient> listeAContaminer = new ArrayList<>();
         Random rand = new Random();
-        int nombreAContaminer = rand.nextInt(5);  // Choisir aléatoirement combien de créatures contaminer
-        ArrayList <CreaturePatient> listeCreatureService = service.getListeCreatures();
-
-        // Sélectionner les créatures à contaminer
-        for (int i = 0; i < nombreAContaminer; i++) {
-            listeAContaminer.add(listeCreatureService.get(rand.nextInt(listeCreatureService.size())));
-        }
-
-        // Contaminer chaque créature sélectionnée
-        for (int i = 0; i < listeAContaminer.size(); i++) {
-            contamine(listeAContaminer.get(i));
-        }
+        int nombreAContaminer = rand.nextInt(3)+1;  // Choisit aléatoirement combien de fois la créature va contaminer (entre 1 et 3, tous les deux inclus)
+        for (int i = 0; i < nombreAContaminer; ++i) { contamine(); }
     }
 
     /**
-     * Contamine une créature avec une maladie aléatoire de sa propre liste de maladies.
-     * @param creaturePatient La créature à contaminer
+     * Méthode par défaut qui permet de contaminer une créature avec une maladie.
+     * Elle choisit aléatoirement une maladie d'une créature et essaie de la transmettre
+     * à une autre créature qui ne possède pas encore cette maladie.
+     * Si la créature choisie a déjà la maladie, la méthode réessaie jusqu'à ce qu'elle en trouve une autre.
+     * Si toutes les créatures ont déjà la maladie, la méthode augmente le niveau de la maladie de la créature choisie.
      */
-    public void contamine(CreaturePatient creaturePatient) {
-        Random rand = new Random();
-        Maladie maladieATransmetre = listeMaladie.get(rand.nextInt(listeMaladie.size()));  // Sélectionner une maladie aléatoire
-        if (listeMaladie.size() != 0) {
-            if (creaturePatient.possedeMaladie(maladieATransmetre.getNomComplet())) {
-                // Si la créature possède déjà la maladie, augmenter le niveau de la maladie
-                for (Maladie maladie : creaturePatient.listeMaladie) {
-                    if (maladie.getNomComplet().equals(maladieATransmetre.getNomComplet())) {
-                        maladie.setLvlActuel(maladie.getLvlActuel() + 1);
+    public void contamine() {
+        if (service == null) return; // Si la créature n'est associée à aucun service, rien ne se passe
+
+        Random rd = new Random();  // Création d'un générateur de nombres aléatoires
+
+        // Choisit une maladie aléatoire parmi celles de la créature
+        Maladie maladie = listeMaladie.get(rd.nextInt(listeMaladie.size()));
+
+        // Récupère la liste des créatures dans le même service médical
+        ArrayList<CreaturePatient> listeCreatures = (ArrayList<CreaturePatient>) service.getListeCreatures().clone();
+
+        // Choisit une créature aléatoire parmi les autres créatures du service
+        CreaturePatient aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
+
+        // Si la créature choisie possède déjà la maladie, on en choisit une autre
+        while (aContaminer.possedeMaladie(maladie.getNomComplet())) {
+            listeCreatures.remove(aContaminer);  // Retire la créature de la liste des choix
+
+            // Si toutes les créatures ont déjà la maladie, on augmente le niveau de la maladie de la créature choisie
+            if (listeCreatures.isEmpty()) {
+                for (Maladie maladie1 : aContaminer.getListeMaladie()) {
+                    if (maladie1.getNomComplet().equals(maladie.getNomComplet())) {
+                        maladie1.setLvlActuel(maladie.getLvlActuel() + 1);  // Augmente le niveau de la maladie
+                        return;  // Fin de la méthode
                     }
                 }
-            } else {
-                // Si la créature ne possède pas la maladie, elle tombe malade
-                creaturePatient.tombeMalade(new Maladie(maladieATransmetre.getNomComplet(), maladieATransmetre.getNomAbrege(), maladieATransmetre.getLvlLetal(), 1));
             }
+
+            // Si une autre créature peut être choisie, on le fait
+            aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
         }
+
+        // Si la créature choisie n'a pas la maladie, elle la contracte
+        aContaminer.tombeMalade(new Maladie(maladie.getNomComplet(), maladie.getNomAbrege(), maladie.getLvlLetal()));
     }
 
     /**
@@ -198,11 +217,13 @@ public abstract class CreaturePatient implements Race {
      */
     public void estSoignee(String nomMaladieComplet) {
         // Cherche la maladie à soigner et la retire de la liste
-        for (Maladie maladie1 : listeMaladie) {
-            if (maladie1.getNomComplet().equals(nomMaladieComplet)) {
-                listeMaladie.remove(maladie1);
+        ArrayList<Maladie> aRetirer = new ArrayList<>();
+        for (Maladie maladie : listeMaladie) {
+            if (maladie.getNomComplet().equals(nomMaladieComplet)) {
+                aRetirer.add(maladie);
             }
         }
+        for (Maladie maladie : aRetirer) listeMaladie.remove(maladie);
     }
 
     /**
@@ -231,6 +252,9 @@ public abstract class CreaturePatient implements Race {
      * La créature meurt et est retirée du service médical.
      */
     public void meurt() {
-        if (service != null) service.enleverCreature(this);  // Si elle est dans un service, elle est enlevée de ce service
+        if (service != null) {
+            service.enleverCreature(this);  // Si elle est dans un service, elle est enlevée de ce service
+            service = null;
+        }
     }
 }

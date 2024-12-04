@@ -97,8 +97,8 @@ public abstract class CreatureMedecin implements Race {
      */
     public void soigneCreature (CreaturePatient creaturePatient, String maladie) {
         // Vérifie si la créature médecin et la créature malade appartiennent à la même race avant de soigner
-        if (this.getRace() == creaturePatient.getRace()) {
-            creaturePatient.getService().soignerCreature(creaturePatient, maladie);
+        if (this.getRace().equals(creaturePatient.getRace())) {
+            creaturePatient.estSoignee(maladie);
         }
     }
 }

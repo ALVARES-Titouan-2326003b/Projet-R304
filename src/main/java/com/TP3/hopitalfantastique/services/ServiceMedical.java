@@ -1,16 +1,18 @@
 package com.TP3.hopitalfantastique.services;
 
 import com.TP3.hopitalfantastique.creatures.CreaturePatient;
-import com.TP3.hopitalfantastique.creatures.maladies.Maladie;
+import com.TP3.hopitalfantastique.creatures.Maladie;
 import java.util.ArrayList;
 
 public class ServiceMedical {
-    private String nom;
-    private float superficie;
-    private int capaciteMax;
-    private int nombreCreature;
-    private ArrayList<CreaturePatient> listeCreatures;
-    private String budget;
+
+    // Attributs généraux du service médical
+    private String nom;  // Nom du service médical
+    private float superficie;  // Superficie du service médical (en m²)
+    private int capaciteMax;  // Capacité maximale du service médical
+    private int nombreCreature;  // Nombre actuel de créatures dans le service médical
+    private ArrayList<CreaturePatient> listeCreatures;  // Liste des créatures présentes dans le service médical
+    private String budget;  // Budget alloué au service médical
 
     /**
      * Constructeur du service médical
@@ -23,9 +25,9 @@ public class ServiceMedical {
         this.nom = nom;
         this.superficie = superficie;
         this.capaciteMax = capaciteMax;
-        nombreCreature = 0;
+        nombreCreature = 0;  // Initialisation du nombre de créatures à 0
         this.budget = budget;
-        listeCreatures = new ArrayList<>();
+        listeCreatures = new ArrayList<>();  // Initialisation de la liste des créatures
     }
 
     /**
@@ -34,6 +36,14 @@ public class ServiceMedical {
      */
     public ArrayList<CreaturePatient> getListeCreatures() {
         return listeCreatures;
+    }
+
+    /**
+     * Redéfinit la valeur de listeCreatures
+     * @param listeCreatures nouvelle valeur de listeCreatures
+     */
+    public void setListeCreatures(ArrayList<CreaturePatient> listeCreatures) {
+        this.listeCreatures = listeCreatures;  // Incrémente le nombre de créatures
     }
 
     /**
@@ -61,10 +71,15 @@ public class ServiceMedical {
     }
 
     /**
-     * Incrémente le nombre de créatures dans le service médical
+     * Redéfinit la valeur de nombreCreature
+     * @param nombreCreature nouvelle valeur de nombreCreature
      */
-    public void setNombreCreature() {
-        this.nombreCreature++;  // Incrémente le nombre de créatures
+    public void setNombreCreature(int nombreCreature) {
+        this.nombreCreature = nombreCreature;  // Incrémente le nombre de créatures
+    }
+
+    public String getBudget() {
+        return budget;
     }
 
     /**
@@ -74,20 +89,25 @@ public class ServiceMedical {
      */
     public boolean ajouterCreature(CreaturePatient creature) {
         if (listeCreatures.size() < capaciteMax) {
-            listeCreatures.add(creature);
-            nombreCreature++;
-            return true;
-        }
-        else return false;
+            if (creature.getService() != null) creature.getService().enleverCreature(creature);
+            if (listeCreatures.add(creature)) {  // Ajoute la créature à la liste et vérifie qu'elle a bien été ajoutée
+                creature.setService(this);
+                ++nombreCreature;  // Incrémente le nombre de créatures
+                return true;
+            }
+        } return false;  // Retourne false si la capacité est dépassée
     }
 
     /**
      * Méthode pour enlever une créature du service médical
      * @param creature La créature à enlever
      */
-    public void enleverCreature(CreaturePatient creature) {
-        listeCreatures.remove(creature);
-        nombreCreature--;
+    public boolean enleverCreature(CreaturePatient creature) {
+        if (listeCreatures.remove(creature)) {  // Supprime la créature de la liste et vérifie qu'elle a bien été supprimée
+            creature.setService(null);
+            --nombreCreature;  // Décrémente le nombre de créatures
+            return true;
+        } return false;
     }
 
     /**
@@ -96,7 +116,7 @@ public class ServiceMedical {
      * @param maladie Le nom de la maladie à traiter
      */
     public void soignerCreature(CreaturePatient creature, String maladie) {
-        creature.estSoignee(maladie);
+        creature.estSoignee(maladie);  // Appelle la méthode pour soigner la créature
     }
 
     /**
@@ -104,7 +124,7 @@ public class ServiceMedical {
      * @param budget Le nouveau budget
      */
     public void reviserBudget(String budget) {
-        this.budget = budget;
+        this.budget = budget;  // Met à jour le budget du service
     }
 
     /**
@@ -123,13 +143,13 @@ public class ServiceMedical {
 
         sb.append("Créatures présentes :\n");
         if (listeCreatures.isEmpty()) {
-            sb.append("Aucune créature présente.\n");
+            sb.append("Aucune créature présente.\n");  // Si aucune créature, mentionne qu'il n'y en a pas
         }
         else {
             for (CreaturePatient creature : listeCreatures) {
-                sb.append(creature.toString()).append("\n");
+                sb.append(creature.toString()).append("\n");  // Affiche les détails de chaque créature
             }
         }
-        return sb.toString();
+        return sb.toString();  // Retourne la description complète du service médical
     }
 }
