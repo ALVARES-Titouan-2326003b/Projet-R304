@@ -1,11 +1,13 @@
 package com.TP3.hopitalfantastique.creatures.patient;
 
 import com.TP3.hopitalfantastique.creatures.CreaturePatient;
+import com.TP3.hopitalfantastique.creatures.comportements.Demoralisateur;
+import com.TP3.hopitalfantastique.creatures.comportements.Prioritaire;
 import com.TP3.hopitalfantastique.creatures.especesInterface.ElfInterface;
 import com.TP3.hopitalfantastique.creatures.Maladie;
 import java.util.ArrayList;
 
-public class ElfPatient extends CreaturePatient implements ElfInterface {
+public class ElfPatient extends CreaturePatient implements ElfInterface, Demoralisateur, Prioritaire {
 
     /**
      * Constructeur de la classe ElfPatient.

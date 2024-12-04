@@ -13,7 +13,7 @@ public interface MortVivant {
      *
      * @param creature La créature qui meurt.
      */
-    public default void meurt(CreaturePatient creature) {
+    default void meurt(CreaturePatient creature) {
         // Réinitialise la liste des maladies de la créature en la vidant
         creature.setListeMaladie(new ArrayList<Maladie>());
 

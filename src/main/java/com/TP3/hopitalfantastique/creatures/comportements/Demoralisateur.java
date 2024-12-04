@@ -1,4 +1,4 @@
-package java.com.TP3.hopitalfantastique.creatures.comportements;
+package com.TP3.hopitalfantastique.creatures.comportements;
 
 import com.TP3.hopitalfantastique.creatures.CreaturePatient;
 import com.TP3.hopitalfantastique.services.ServiceMedical;
@@ -14,7 +14,7 @@ public interface Demoralisateur {
      *
      * @param creature La créature qui va démoraliser d'autres créatures.
      */
-    public default void demoralise(CreaturePatient creature) {
+    default void demoralise(CreaturePatient creature) {
         ServiceMedical service = creature.getService();  // Récupère le service médical auquel appartient la créature
         ArrayList<CreaturePatient> listeCreatures = service.getListeCreatures();  // Récupère la liste des créatures du service médical
         Random rd = new Random();  // Création d'un générateur de nombres aléatoires
