@@ -1,6 +1,11 @@
 package com.TP3.hopitalfantastique.creatures;
 
+/**
+ * Classe représentant une maladie.
+ * Une maladie possède un nom, un niveau de létalité et un niveau actuel qui évolue avec le temps.
+ */
 public class Maladie {
+
     // Valeurs par défaut pour les maladies
     private static final String nomDefaut = "Nouvelle Maladie"; // Nom par défaut de la maladie
     private static final int lvlLetalDefaut = 5;  // Niveau létal par défaut
@@ -107,9 +112,6 @@ public class Maladie {
      * @return true si la maladie est létale (niveau actuel >= niveau létal), sinon false.
      */
     public boolean estLetal(){
-        if (lvlLetal <= lvlActuel) {
-            return true;  // Si le niveau actuel est supérieur ou égal au niveau létal, la maladie est létale
-        }
-        return false;  // Sinon, elle n'est pas létale
+        return lvlLetal <= lvlActuel;   // Si le niveau actuel est supérieur ou égal au niveau létal, la maladie est létale et on renvoie true, sinon false
     }
 }

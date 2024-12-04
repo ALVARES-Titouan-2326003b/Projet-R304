@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LycanthropeMedecinTest {
     @Test
-    void testGetRace() {
+    public void testGetRace() {
         CreatureMedecin medecin = new LycanthropeMedecin("Medecin", "M", 38);
         assertEquals("Lycanthrope", medecin.getRace());
     }

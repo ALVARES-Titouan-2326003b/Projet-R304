@@ -13,7 +13,7 @@ class CreatureMedecinTest {
     CreatureMedecin creatureMedecin;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         creatureMedecin = new CreatureMedecin("Creature Medecin", "Homme?", 51) {
             @Override
             public String getRace() {

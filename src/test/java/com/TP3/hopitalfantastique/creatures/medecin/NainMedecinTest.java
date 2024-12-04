@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NainMedecinTest {
     @Test
-    void testGetRace() {
+    public void testGetRace() {
         CreatureMedecin medecin = new NainMedecin("Medecin", "M", 38);
         assertEquals("Nain", medecin.getRace());
     }

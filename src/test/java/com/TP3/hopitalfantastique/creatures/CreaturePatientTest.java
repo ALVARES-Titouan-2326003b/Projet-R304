@@ -17,7 +17,7 @@ class CreaturePatientTest {
     CreaturePatient creaturePatient;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         creaturePatient = new CreaturePatient("Creature Patient", "Homme?", 72.1f, 182.15f, 51, new ArrayList<>(), 10) {
             @Override
             public String getRace() {

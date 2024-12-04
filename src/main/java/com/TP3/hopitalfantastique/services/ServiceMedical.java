@@ -39,6 +39,14 @@ public class ServiceMedical {
     }
 
     /**
+     * Redéfinit la valeur de listeCreatures
+     * @param listeCreatures nouvelle valeur de listeCreatures
+     */
+    public void setListeCreatures(ArrayList<CreaturePatient> listeCreatures) {
+        this.listeCreatures = listeCreatures;  // Incrémente le nombre de créatures
+    }
+
+    /**
      * Getter pour obtenir le nom du service médical
      * @return Nom du service médical
      */
@@ -63,10 +71,11 @@ public class ServiceMedical {
     }
 
     /**
-     * Incrémente le nombre de créatures dans le service médical
+     * Redéfinit la valeur de nombreCreature
+     * @param nombreCreature nouvelle valeur de nombreCreature
      */
-    public void setNombreCreature() {
-        this.nombreCreature++;  // Incrémente le nombre de créatures
+    public void setNombreCreature(int nombreCreature) {
+        this.nombreCreature = nombreCreature;  // Incrémente le nombre de créatures
     }
 
     public String getBudget() {
@@ -83,7 +92,7 @@ public class ServiceMedical {
             if (creature.getService() != null) creature.getService().enleverCreature(creature);
             if (listeCreatures.add(creature)) {  // Ajoute la créature à la liste et vérifie qu'elle a bien été ajoutée
                 creature.setService(this);
-                nombreCreature++;  // Incrémente le nombre de créatures
+                ++nombreCreature;  // Incrémente le nombre de créatures
                 return true;
             }
         }
@@ -97,7 +106,7 @@ public class ServiceMedical {
     public boolean enleverCreature(CreaturePatient creature) {
         if (listeCreatures.remove(creature)) {  // Supprime la créature de la liste et vérifie qu'elle a bien été supprimée
             creature.setService(null);
-            nombreCreature--;  // Décrémente le nombre de créatures
+            --nombreCreature;  // Décrémente le nombre de créatures
             return true;
         } return false;
     }

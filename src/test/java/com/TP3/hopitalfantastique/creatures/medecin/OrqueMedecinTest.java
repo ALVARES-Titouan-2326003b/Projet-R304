@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OrqueMedecinTest {
     @Test
-    void testGetRace() {
+    public void testGetRace() {
         CreatureMedecin medecin = new OrqueMedecin("Medecin", "M", 38);
         assertEquals("Orque", medecin.getRace());
     }

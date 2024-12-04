@@ -16,18 +16,23 @@ public interface Demoralisateur {
      */
     default void demoralise(CreaturePatient creature) {
         ServiceMedical service = creature.getService();  // Récupère le service médical auquel appartient la créature
-        ArrayList<CreaturePatient> listeCreatures = service.getListeCreatures();  // Récupère la liste des créatures du service médical
+        ArrayList<CreaturePatient> listeCreatures = (ArrayList<CreaturePatient>) service.getListeCreatures().clone();  // Récupère la liste des créatures du service médical
+        if (listeCreatures.isEmpty()) return;   // Si il n'y a aucune créature à démoraliser alors on arrête le programme
+
         Random rd = new Random();  // Création d'un générateur de nombres aléatoires
         listeCreatures.remove(creature);  // Retire la créature qui appelle la méthode de la liste des créatures à démoraliser
 
         // La boucle démoralise un certain nombre de créatures au hasard
         CreaturePatient aDemoraliser;
-        for (int i = 0; i < rd.nextInt(listeCreatures.size() + 1); i++) {
+        for (int i = 0; i < rd.nextInt(listeCreatures.size()) + 1; ++i) {
+            // Si il n'y a aucune créature à démoraliser alors on arrête le programme
+            if (listeCreatures.isEmpty()) return;
+
             // Choisit un index au hasard dans la liste des créatures restantes
             int index_creature = rd.nextInt(listeCreatures.size());
 
             // Récupère la créature à démoraliser à partir de l'index choisi
-            aDemoraliser = listeCreatures.get(rd.nextInt(index_creature));
+            aDemoraliser = listeCreatures.get(index_creature);
 
             // Si la créature à démoraliser a un moral positif, on peut diminuer son moral
             if (aDemoraliser.getIndMoral() > 0) {

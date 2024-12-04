@@ -21,4 +21,9 @@ public class ZombiePatient extends CreaturePatient implements ZombieInterface, M
     public ZombiePatient(String nom, String sexe, float poids, float taille, int age, ArrayList<Maladie> listeMaladie, int indMoral) {
         super(nom, sexe, poids, taille, age, listeMaladie, indMoral);
     }
+
+    @Override
+    public void meurt() {
+        meurt(this);
+    }
 }

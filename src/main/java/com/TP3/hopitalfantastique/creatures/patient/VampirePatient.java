@@ -40,8 +40,7 @@ public class VampirePatient extends CreaturePatient implements VampireInterface,
     public void meurt() {
         if (super.getService() != null) {
             demoralise(this);
-            super.getService().enleverCreature(this);  // Si elle est dans un service, elle est enlevée de ce service
-            super.setService(null);
         }
+        meurt(this);
     }
 }

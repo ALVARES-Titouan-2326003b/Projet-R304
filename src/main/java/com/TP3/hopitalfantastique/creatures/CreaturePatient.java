@@ -170,7 +170,7 @@ public abstract class CreaturePatient implements Race {
         Maladie maladie = listeMaladie.get(rd.nextInt(listeMaladie.size()));
 
         // Récupère la liste des créatures dans le même service médical
-        ArrayList<CreaturePatient> listeCreatures = service.getListeCreatures();
+        ArrayList<CreaturePatient> listeCreatures = (ArrayList<CreaturePatient>) service.getListeCreatures().clone();
 
         // Choisit une créature aléatoire parmi les autres créatures du service
         CreaturePatient aContaminer = listeCreatures.get(rd.nextInt(listeCreatures.size()));
@@ -180,7 +180,7 @@ public abstract class CreaturePatient implements Race {
             listeCreatures.remove(aContaminer);  // Retire la créature de la liste des choix
 
             // Si toutes les créatures ont déjà la maladie, on augmente le niveau de la maladie de la créature choisie
-            if (listeCreatures.size() == 0) {
+            if (listeCreatures.isEmpty()) {
                 for (Maladie maladie1 : aContaminer.getListeMaladie()) {
                     if (maladie1.getNomComplet().equals(maladie.getNomComplet())) {
                         maladie1.setLvlActuel(maladie.getLvlActuel() + 1);  // Augmente le niveau de la maladie
