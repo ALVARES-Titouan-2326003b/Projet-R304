@@ -22,7 +22,7 @@ public class Meute {
         this.couple = couple;
         this.nom = nom;
         this.hurlement = hurlement;
-        this.lycanthropes = new ArrayList();  // Initialisation de la liste des Lycanthropes
+        this.lycanthropes = new ArrayList();
     }
 
     /**
@@ -96,17 +96,23 @@ public class Meute {
         Scanner sc = new Scanner(System.in);
 
         for (int i = 0; i < porte; i++) {
-            // Affichage des informations du nouveau Lycanthrope
             System.out.print("Lycanthrope (" + sexe + " n°" + (i+1));
             System.out.print(" Force : " + force);
             System.out.print(" Rang : " + rang);
             System.out.print(" Nom :");
-            String nom = sc.nextLine();  // Demande à l'utilisateur d'entrer le nom
+            String nom = sc.nextLine();
             Lycanthrope jeuneLycanthrope = new Lycanthrope(nom, sexe, "jeune", force, this);
-            lycanthropes.add(jeuneLycanthrope);  // Ajoute le nouveau Lycanthrope à la meute
+            lycanthropes.add(jeuneLycanthrope);
         }
     }
 
+    /**
+     * Effectue le tri des Lycanthropes de la meute selon leur rang,
+     * en utilisant l'algorithme de tri rapide (quicksort).
+     *
+     * @param gauche L'indice de début de la portion de la liste à trier.
+     * @param droite L'indice de fin de la portion de la liste à trier.
+     */
     public void quicksortMeute(int gauche, int droite) {
         if (gauche < droite) {
             int pivotIndex = partition(gauche, droite);
@@ -115,6 +121,15 @@ public class Meute {
         }
     }
 
+    /**
+     * Partitionne une portion de la liste des Lycanthropes selon le pivot,
+     * en déplaçant les éléments plus petits que le pivot à gauche
+     * et les éléments plus grands à droite.
+     *
+     * @param gauche L'indice de début de la portion à partitionner.
+     * @param droite L'indice de fin de la portion à partitionner.
+     * @return L'indice final du pivot après partitionnement.
+     */
     private int partition(int gauche, int droite) {
         String pivot = lycanthropes.get(droite).getRang();
         int i = gauche - 1;
@@ -128,17 +143,35 @@ public class Meute {
         return i + 1;
     }
 
+    /**
+     * Permute deux Lycanthropes dans la liste.
+     *
+     * @param i L'indice du premier Lycanthrope.
+     * @param j L'indice du second Lycanthrope.
+     */
     private void swap(int i, int j) {
         Lycanthrope temp = lycanthropes.get(i);
         lycanthropes.set(i, lycanthropes.get(j));
         lycanthropes.set(j, temp);
     }
 
+    /**
+     * Compare deux rangs de Lycanthropes selon leur position dans l'ordre hiérarchique.
+     *
+     * @param rang1 Le rang du premier Lycanthrope.
+     * @param rang2 Le rang du second Lycanthrope.
+     * @return Un entier négatif, nul ou positif si rang1 est respectivement
+     *         inférieur, égal ou supérieur à rang2 dans l'ordre hiérarchique.
+     */
     private int compareRang(String rang1, String rang2) {
         String rang = "αβγδεζηθικλμνξοπρσςτυφχψω";
         return Integer.compare(rang.indexOf(rang1), rang.indexOf(rang2));
     }
 
+    /**
+     * Fait vieillir tous les Lycanthropes de la meute.
+     * Chaque Lycanthrope modifie son état en fonction de son âge ou de sa condition.
+     */
     public void faitVieillir(){
         for (Lycanthrope lycanthrope : lycanthropes) {
             lycanthrope.vieillir();
@@ -151,14 +184,20 @@ public class Meute {
      *
      * @param initial Le Lycanthrope à l'origine du hurlement.
      */
-    public void hurlement(Lycanthrope initial){
+    public String hurlement(Lycanthrope initial){
+        String hurlementMeute = initial.toString();
         for (Lycanthrope lycanthrope : lycanthropes) {
             if (lycanthrope != initial){
-                lycanthrope.hurler("reponse");
+                hurlementMeute += "\n" + lycanthrope.hurler("reponse");
             }
         }
+        return hurlementMeute;
     }
 
-
+    public void evolutionHierarchie() {
+        for (Lycanthrope lycanthrope : lycanthropes) {
+            lycanthrope.rangMaj();
+        }
+    }
 
 }

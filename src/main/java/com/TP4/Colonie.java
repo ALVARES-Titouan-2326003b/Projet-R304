@@ -3,9 +3,7 @@ package com.TP4;
 import java.util.ArrayList;
 
 public class Colonie {
-    // Liste des Meutes composant la colonie
     private ArrayList<Meute> listMeute;
-    // Saison actuelle de la colonie
     private String saison;
 
     /**
@@ -96,10 +94,9 @@ public class Colonie {
                 }
                 break;
             case "hiver":
-                // En hiver, chaque Meute subit une évolution de hiérarchie et un contact avec les humains
+                // En hiver, chaque Meute subit une évolution de hiérarchie
                 for (Meute meute: listMeute){
-                   // meute.evolutionHiérarchie();
-                   // meute.faitHumain();
+                   meute.evolutionHierarchie();
                 }
                 setSaison("printemps");  // Changement de saison
                 break;

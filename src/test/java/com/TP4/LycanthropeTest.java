@@ -12,7 +12,7 @@ class LycanthropeTest {
         @BeforeEach
         void setUp() {
             meute = new Meute("meute1", "bouh", null);
-            lycanthrope = new Lycanthrope("Thomas", "M", "jeune", 10);
+            lycanthrope = new Lycanthrope("Thomas", "M", "jeune", 10, null);
             lycanthrope.setMeute(meute);
         }
 
@@ -23,7 +23,7 @@ class LycanthropeTest {
             assertEquals("jeune", lycanthrope.getCatAge());
             assertEquals(10, lycanthrope.getForce());
             assertEquals("ω", lycanthrope.getRang());
-            assertEquals(0, lycanthrope.getFacteureDomination());
+            assertEquals(0, lycanthrope.getFacteurDomination());
             assertEquals(meute, lycanthrope.getMeute());
         }
 
@@ -32,13 +32,13 @@ class LycanthropeTest {
             lycanthrope.setSexe("F");
             lycanthrope.setCatAge("adulte");
             lycanthrope.setForce(20);
-            lycanthrope.setFacteureDomination(5);
+            lycanthrope.setFacteurDomination(5);
             lycanthrope.setRang("β");
 
             assertEquals("F", lycanthrope.getSexe());
             assertEquals("adulte", lycanthrope.getCatAge());
             assertEquals(20, lycanthrope.getForce());
-            assertEquals(5, lycanthrope.getFacteureDomination());
+            assertEquals(5, lycanthrope.getFacteurDomination());
             assertEquals("β", lycanthrope.getRang());
         }
 
@@ -47,7 +47,7 @@ class LycanthropeTest {
             assertEquals(1 + (24 - "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf("ω")) + 10, lycanthrope.calculNiveau());
             lycanthrope.setCatAge("adulte");
             lycanthrope.setForce(20);
-            lycanthrope.setFacteureDomination(5);
+            lycanthrope.setFacteurDomination(5);
             assertEquals(10 + (24 - "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf("ω")) + 20 + 5, lycanthrope.calculNiveau());
         }
 
@@ -70,25 +70,49 @@ class LycanthropeTest {
             lycanthrope.quitteMeute();
             assertNull(lycanthrope.getMeute());
             assertNull(lycanthrope.getRang());
-            assertEquals(0, lycanthrope.getFacteureDomination());
+            assertEquals(0, lycanthrope.getFacteurDomination());
         }
 
         @Test
         void testDomination() {
-            Lycanthrope autre = new Lycanthrope("Casimir", "F", "jeune", 8);
+            Lycanthrope autre = new Lycanthrope("Casimir", "F", "jeune", 8, null);
             autre.setMeute(meute);
+            lycanthrope.setRang("ξ");
 
             lycanthrope.domination(autre);
-            assertEquals(1, lycanthrope.getFacteureDomination());
-            assertEquals(-1, autre.getFacteureDomination());
-        }
-/**
-        @Test
-        void testHurler() {
-            lycanthrope.hurler("domination");
-            // Vérification manuelle : le test devrait appeler la méthode et afficher le comportement
+            assertEquals(1, lycanthrope.getFacteurDomination());
+            assertEquals(-1, autre.getFacteurDomination());
+
+            autre.setForce(100);
+            lycanthrope.setImpetuosite(10);
+
+            lycanthrope.domination(autre);
+            //test lycanthrope domine un ω
+            assertEquals(2, lycanthrope.getFacteurDomination());
+            assertEquals(-2, autre.getFacteurDomination());
+            assertEquals("ω", autre.getRang());
+            assertEquals("ξ", lycanthrope.getRang());
+
+            autre.setRang("ρ");
+            lycanthrope.domination(autre);
+            assertEquals(1, lycanthrope.getFacteurDomination());
+            assertEquals(-1, autre.getFacteurDomination());
+            assertEquals("ξ", autre.getRang());
+            assertEquals("ρ", lycanthrope.getRang());
+
+
+
         }
 
+
+        @Test
+        void testHurler() {
+            Lycanthrope autre = new Lycanthrope("Casimir", "F", "jeune", 8, null);
+            autre.setMeute(meute);
+            assertEquals( "Lycanthrope{sexe='M', catAge='jeune', force=10, facteurDomination=0, rang='ω', niveau=0, impetuosite='1', nomMeute='meute1'}", lycanthrope.hurler("domination"));
+            assertEquals("", lycanthrope.hurler("appartenance"));
+        }
+/**
         @Test
         void testTransformation() {
             lycanthrope.setNiveau(100);
