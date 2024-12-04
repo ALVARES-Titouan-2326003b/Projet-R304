@@ -104,7 +104,7 @@ class CreatureMedecinTest {
         creatureMedecin = new CreatureMedecin("Creature Medecin", "Homme?", 51) {
             @Override
             public String getRace() {
-                return "Zombie";
+                return patient.getRace();
             }
         };
         // maintenant le médecin est de la bonne race

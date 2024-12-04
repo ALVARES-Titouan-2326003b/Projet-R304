@@ -204,6 +204,7 @@ public abstract class CreaturePatient implements Race {
                 aRetirer.add(maladie);
             }
         }
+        for (Maladie maladie : aRetirer) listeMaladie.remove(maladie);
     }
 
     /**
