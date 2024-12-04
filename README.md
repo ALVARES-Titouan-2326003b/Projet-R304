@@ -23,3 +23,6 @@ Vous trouverez dans les dossiers src/test/java/com :
 
 ### Activité :
 Ce projet n'étant pas considéré comme complet et achevé, certaines erreurs et bugs peuvent être présent dans le code.
+
+### Utilisation d'IA génératrice :
+De l'IA générative a été utilisée pour aider à la rédaction des deux manuels d'utilisation afin de réduire la longueur de la tâche.
