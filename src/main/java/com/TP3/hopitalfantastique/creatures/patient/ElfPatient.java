@@ -23,4 +23,16 @@ public class ElfPatient extends CreaturePatient implements ElfInterface, Demoral
     public ElfPatient(String nom, String sexe, float poids, float taille, int age, ArrayList<Maladie> listeMaladie, int indMoral) {
         super(nom, sexe, poids, taille, age, listeMaladie, indMoral);
     }
+
+    /**
+     * La créature meurt, démoralise une partie de son service médical, et est retirée du service médical.
+     */
+    @Override
+    public void meurt() {
+        if (super.getService() != null) {
+            demoralise(this);
+            super.getService().enleverCreature(this);  // Si elle est dans un service, elle est enlevée de ce service
+            super.setService(null);
+        }
+    }
 }

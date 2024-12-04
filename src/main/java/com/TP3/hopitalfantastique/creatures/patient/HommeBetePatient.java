@@ -22,6 +22,10 @@ public class HommeBetePatient extends CreaturePatient implements HommeBeteInterf
         super(nom, sexe, poids, taille, age, listeMaladie, indMoral);
     }
 
+    /**
+     * Override getFactContamination()
+     * @return factContamination, qui vaut 0.3 pour les créatures bestiales
+     */
     @Override
     public double getFactContamination() {
         return factContamination;

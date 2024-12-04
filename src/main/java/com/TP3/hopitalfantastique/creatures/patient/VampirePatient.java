@@ -24,8 +24,24 @@ public class VampirePatient extends CreaturePatient implements VampireInterface,
         super(nom, sexe, poids, taille, age, listeMaladie, indMoral);
     }
 
+    /**
+     * Override getFactContamination()
+     * @return factContamination, qui vaut 0.3 pour les créatures bestiales
+     */
     @Override
     public double getFactContamination() {
         return factContamination;
+    }
+
+    /**
+     * La créature meurt, démoralise une partie de son service médical, et est retirée du service médical.
+     */
+    @Override
+    public void meurt() {
+        if (super.getService() != null) {
+            demoralise(this);
+            super.getService().enleverCreature(this);  // Si elle est dans un service, elle est enlevée de ce service
+            super.setService(null);
+        }
     }
 }
