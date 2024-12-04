@@ -1,7 +1,7 @@
 package com.TP4;
 
 public class Lycanthrope {
-    private String nom;
+    private final String nom;
     private String sexe;
     private String catAge;
     private int force;
@@ -10,6 +10,7 @@ public class Lycanthrope {
     private int niveau;
     private int impetuosite;
     private Meute meute;
+    private final String rangs = "αβγδεζηθικλμνξοπρσςτυφχψω";
 
     /**
      * Constructeur de la classe Lycanthrope.
@@ -31,6 +32,10 @@ public class Lycanthrope {
         this.niveau = 0;
         this.impetuosite = 1;
         this.meute = meute;
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public String getSexe() {
@@ -66,7 +71,7 @@ public class Lycanthrope {
         } else if (this.catAge == "vieux") {
             niveau += 5;
         }
-        niveau += 24 - "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.getRang());
+        niveau += 24 - rangs.indexOf(this.getRang());
         return niveau + this.facteurDomination + force;
     }
 
@@ -86,12 +91,12 @@ public class Lycanthrope {
         this.force = force;
     }
 
-    public int getFacteureDomination() {
+    public int getFacteurDomination() {
         return facteurDomination;
     }
 
-    public void setFacteureDomination(int facteureDomination) {
-        this.facteurDomination = facteureDomination;
+    public void setFacteurDomination(int facteurDomination) {
+        this.facteurDomination = facteurDomination;
     }
 
     public String getRang() {
@@ -153,17 +158,35 @@ public class Lycanthrope {
     public void domination(Lycanthrope lycanthrope) {
         if (this.getForce() * this.impetuosite >= lycanthrope.getForce() && !(lycanthrope.getSexe() == "femelle" && lycanthrope.getRang() == "α")) {
             if (this.getForce() > lycanthrope.getForce() || lycanthrope.getRang() == "ω") {
-                if ("αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(this.rang) <= "αβγδεζηθικλμνξοπρσςτυφχψω".indexOf(lycanthrope.getRang())) {
-                    Meute tmp = this.meute;
-                    this.setMeute(lycanthrope.getMeute());
-                    lycanthrope.setMeute(tmp);
-                    this.calculDomination();
-                    lycanthrope.calculDomination();
+                if (rangs.indexOf(this.rang) >= rangs.indexOf(lycanthrope.getRang())) {
+                    this.setFacteurDomination(this.getFacteurDomination() + 1);
+                    lycanthrope.setFacteurDomination(lycanthrope.getFacteurDomination() - 1);
+                    String tmpRang = this.getRang();
+                    this.setRang(lycanthrope.getRang());
+                    lycanthrope.setRang(tmpRang);
                 }
-            } else {
-                this.setFacteureDomination(this.getFacteureDomination() + 1);
-                lycanthrope.setFacteureDomination(lycanthrope.getFacteureDomination() - 1);
+                else {
+                    this.setFacteurDomination(this.getFacteurDomination() + 1);
+                    lycanthrope.setFacteurDomination(lycanthrope.getFacteurDomination() - 1);
+                }
             }
+            else {
+                if (rangs.indexOf(this.rang) <= rangs.indexOf(lycanthrope.getRang())) {
+                    this.setFacteurDomination(this.getFacteurDomination() - 1);
+                    lycanthrope.setFacteurDomination(lycanthrope.getFacteurDomination() + 1);
+                    String tmpRang = this.getRang();
+                    this.setRang(lycanthrope.getRang());
+                    lycanthrope.setRang(tmpRang);
+
+                }
+                else {
+                    this.setFacteurDomination(this.getFacteurDomination() - 1);
+                    lycanthrope.setFacteurDomination(lycanthrope.getFacteurDomination() + 1);
+                }
+            }
+        }
+        else {
+            System.out.println(this.getNom() + " ne peut pas essayer de dominer " + lycanthrope.getNom());
         }
     }
 
@@ -172,24 +195,28 @@ public class Lycanthrope {
      * Fait hurler le Lycanthrope en fonction du type de hurlement.
      * Cela peut être pour marquer l'appartenance à la meute, la domination, la soumission ou l'agressivité.
      *
-     * @param type Le type de hurlement ("appartenance", "domination", "soumission", "agressivité").
+     * @param type Le type de hurlement ("appartenance", "reponse", "domination", "soumission", "agressivité").
      */
-    public void hurler(String type) {
+    public String hurler(String type) {
+        String hurlement = "";
         switch (type) {
             case "appartenance":
-                this.meute.hurlement(this);
-                this.toString();
+                hurlement = this.meute.hurlement(this);
+                break;
+            case "reponse":
+                hurlement = this.toString();
                 break;
             case "domination":
-                this.toString();
+                hurlement = this.toString();
                 break;
             case "soumission":
-                this.toString();
+                hurlement = this.toString();
                 break;
             case "agressivité":
-                this.toString();
+                hurlement = this.toString();
                 break;
         }
+        return hurlement;
     }
 
     /**
@@ -202,6 +229,22 @@ public class Lycanthrope {
         this.facteurDomination = 0;
     }
 
+
+    public void rangMaj() {
+        if (this.getFacteurDomination() < -3) {
+            char baisseRang = rangs.charAt(rangs.indexOf(this.rang+1));
+            this.setRang(String.valueOf(baisseRang));
+            this.setFacteurDomination(0);
+        }
+        else if (this.getFacteurDomination() > 3) {
+            if (this.getRang() != "α") {
+                char monteRang = rangs.charAt(rangs.indexOf(this.rang)-1);
+                this.setRang(String.valueOf(monteRang));
+                this.setFacteurDomination(0);
+            }
+        }
+    }
+
     /**
      * Méthode qui retourne une représentation textuelle du Lycanthrope.
      * Cela inclut son sexe, sa catégorie d'âge, sa force, son rang, son niveau, et la meute à laquelle il appartient.
@@ -210,11 +253,12 @@ public class Lycanthrope {
      */
     @Override
     public String toString() {
-        return "Lycantrope{" +
-                "sexe='" + sexe + '\'' +
+        return "Lycanthrope{" +
+                "nom='" + nom + '\'' +
+                ", sexe='" + sexe + '\'' +
                 ", catAge='" + catAge + '\'' +
                 ", force=" + force +
-                ", facteureDomination=" + facteurDomination +
+                ", facteurDomination=" + facteurDomination +
                 ", rang='" + rang + '\'' +
                 ", niveau=" + niveau +
                 ", impetuosite='" + impetuosite + '\'' +

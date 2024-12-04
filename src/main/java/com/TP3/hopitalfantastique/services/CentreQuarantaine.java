@@ -9,8 +9,6 @@ import java.util.ArrayList;
  * Les créatures peuvent être isolées dans ce centre pour éviter la propagation de maladies.
  */
 public class CentreQuarantaine extends ServiceMedical {
-
-    // Liste des créatures actuellement en quarantaine (isolement)
     private ArrayList<CreaturePatient> creaturesEnIsolation = new ArrayList<>();
 
     /**
@@ -21,7 +19,6 @@ public class CentreQuarantaine extends ServiceMedical {
      * @param budget Le budget alloué au centre.
      */
     public CentreQuarantaine(String nom, float superficie, int capaciteMax, String budget) {
-        // Appel du constructeur de la classe parent (ServiceMedical) pour initialiser les attributs hérités
         super(nom, superficie, capaciteMax, budget);
     }
 
@@ -33,18 +30,15 @@ public class CentreQuarantaine extends ServiceMedical {
      */
     @Override
     public boolean ajouterCreature(CreaturePatient creature) {
-        // Vérifie que le centre n'est pas plein
         if (getListeCreatures().size() < getCapaciteMax()) {
-            // Vérifie si la créature est de type Bestial
             if (creature instanceof Bestial) {
-                // Ajoute la créature au centre
                 super.ajouterCreature(creature);
                 return true;
             } else {
-                return false; // La créature n'est pas de type Bestial, elle ne peut pas être ajoutée
+                return false;
             }
         } else {
-            return false; // Le centre est plein, la créature ne peut pas être ajoutée
+            return false;
         }
     }
 

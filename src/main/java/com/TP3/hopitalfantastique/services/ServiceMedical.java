@@ -95,8 +95,7 @@ public class ServiceMedical {
                 ++nombreCreature;  // Incrémente le nombre de créatures
                 return true;
             }
-        }
-        return false;  // Retourne false si la capacité est dépassée
+        } return false;  // Retourne false si la capacité est dépassée
     }
 
     /**
