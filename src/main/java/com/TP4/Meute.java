@@ -5,10 +5,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Meute {
-    private String nom;
-    private String hurlement;
+    private final String nom;
+    private final String hurlement;
     private CoupleAlpha couple;
-    private ArrayList<Lycanthrope> lycanthropes;
+    private final ArrayList<Lycanthrope> lycanthropes;
 
     /**
      * Constructeur de la classe Meute.
@@ -22,7 +22,7 @@ public class Meute {
         this.couple = couple;
         this.nom = nom;
         this.hurlement = hurlement;
-        this.lycanthropes = new ArrayList();
+        this.lycanthropes = new ArrayList<Lycanthrope>();
     }
 
     /**

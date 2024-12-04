@@ -1,7 +1,7 @@
 package com.TP4;
 
 public class Lycanthrope {
-    private String nom;
+    private final String nom;
     private String sexe;
     private String catAge;
     private int force;
