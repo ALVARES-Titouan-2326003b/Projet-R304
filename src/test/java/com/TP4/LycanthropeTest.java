@@ -109,8 +109,10 @@ class LycanthropeTest {
         void testHurler() {
             Lycanthrope autre = new Lycanthrope("Casimir", "F", "jeune", 8, null);
             autre.setMeute(meute);
-            assertEquals( "Lycanthrope{sexe='M', catAge='jeune', force=10, facteurDomination=0, rang='ω', niveau=0, impetuosite='1', nomMeute='meute1'}", lycanthrope.hurler("domination"));
-            assertEquals("", lycanthrope.hurler("appartenance"));
+            meute.ajouterLycanthrope(autre);
+            assertEquals( "Lycanthrope{nom='Thomas', sexe='M', catAge='jeune', force=10, facteurDomination=0, rang='ω', niveau=0, impetuosite='1', nomMeute='meute1'}", lycanthrope.hurler("domination"));
+            assertEquals("Lycanthrope{nom='Thomas', sexe='M', catAge='jeune', force=10, facteurDomination=0, rang='ω', niveau=0, impetuosite='1', nomMeute='meute1'}\n" +
+                    "Lycanthrope{nom='Casimir', sexe='F', catAge='jeune', force=8, facteurDomination=0, rang='ω', niveau=0, impetuosite='1', nomMeute='meute1'}", lycanthrope.hurler("appartenance"));
         }
 /**
         @Test

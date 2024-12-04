@@ -16,6 +16,13 @@ public class Colonie {
     }
 
     /**
+     * Méthode pour récupérer la saison actuelle de la colonie.
+     */
+    public String getSaison() {
+        return saison;
+    }
+
+    /**
      * Constructeur de la classe Colonie qui initialise les attributs listMeute et saison.
      *
      * @param listMeute Liste des Meutes présentes dans la colonie.
@@ -60,7 +67,6 @@ public class Colonie {
      */
     public String toString(){
         String s = "Colonie{";
-        // Pour chaque Meute de la colonie, ajoute sa représentation dans la chaîne
         for(Meute meute: listMeute){
             s += meute.toString() + ";";
         }
@@ -77,39 +83,34 @@ public class Colonie {
      * - Au printemps, la saison change en été et les Meutes se reproduisent.
      */
     public void passeSaison(){
-        // Changement de saison et actions associées
         switch (saison){
             case "ete":
-                setSaison("automne");  // Changement de saison
-                // Chaque Meute hurle
+                setSaison("automne");
                 for (Meute meute: listMeute){
                     meute.hurlement(meute.getCouple().getMaleAlpha());
                 }
                 break;
             case "automne":
-                setSaison("hiver");  // Changement de saison
-                // Chaque Meute vieillit
+                setSaison("hiver");
                 for (Meute meute: listMeute){
                     meute.faitVieillir();
                 }
                 break;
             case "hiver":
-                // En hiver, chaque Meute subit une évolution de hiérarchie
                 for (Meute meute: listMeute){
                    meute.evolutionHierarchie();
                 }
-                setSaison("printemps");  // Changement de saison
+                setSaison("printemps");
                 break;
             case "printemps":
-                // Au printemps, chaque Meute se reproduit
                 for (Meute meute: listMeute){
                     meute.reproduction();
                 }
-                setSaison("ete");  // Changement de saison
+                setSaison("ete");
                 break;
             default:
-                setSaison("ete");  // Si la saison n'est pas reconnue, la saison par défaut est l'été
-                this.passeSaison();  // Appel récursif pour effectuer les actions de la saison
+                setSaison("ete");
+                this.passeSaison();
         }
     }
 }

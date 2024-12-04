@@ -5,14 +5,12 @@ import com.TP3.hopitalfantastique.creatures.maladies.Maladie;
 import java.util.ArrayList;
 
 public class ServiceMedical {
-
-    // Attributs généraux du service médical
-    private String nom;  // Nom du service médical
-    private float superficie;  // Superficie du service médical (en m²)
-    private int capaciteMax;  // Capacité maximale du service médical
-    private int nombreCreature;  // Nombre actuel de créatures dans le service médical
-    private ArrayList<CreaturePatient> listeCreatures;  // Liste des créatures présentes dans le service médical
-    private String budget;  // Budget alloué au service médical
+    private String nom;
+    private float superficie;
+    private int capaciteMax;
+    private int nombreCreature;
+    private ArrayList<CreaturePatient> listeCreatures;
+    private String budget;
 
     /**
      * Constructeur du service médical
@@ -25,9 +23,9 @@ public class ServiceMedical {
         this.nom = nom;
         this.superficie = superficie;
         this.capaciteMax = capaciteMax;
-        nombreCreature = 0;  // Initialisation du nombre de créatures à 0
+        nombreCreature = 0;
         this.budget = budget;
-        listeCreatures = new ArrayList<>();  // Initialisation de la liste des créatures
+        listeCreatures = new ArrayList<>();
     }
 
     /**
@@ -76,11 +74,11 @@ public class ServiceMedical {
      */
     public boolean ajouterCreature(CreaturePatient creature) {
         if (listeCreatures.size() < capaciteMax) {
-            listeCreatures.add(creature);  // Ajoute la créature à la liste
-            nombreCreature++;  // Incrémente le nombre de créatures
+            listeCreatures.add(creature);
+            nombreCreature++;
             return true;
         }
-        else return false;  // Retourne false si la capacité est dépassée
+        else return false;
     }
 
     /**
@@ -88,8 +86,8 @@ public class ServiceMedical {
      * @param creature La créature à enlever
      */
     public void enleverCreature(CreaturePatient creature) {
-        listeCreatures.remove(creature);  // Supprime la créature de la liste
-        nombreCreature--;  // Décrémente le nombre de créatures
+        listeCreatures.remove(creature);
+        nombreCreature--;
     }
 
     /**
@@ -98,7 +96,7 @@ public class ServiceMedical {
      * @param maladie Le nom de la maladie à traiter
      */
     public void soignerCreature(CreaturePatient creature, String maladie) {
-        creature.estSoignee(maladie);  // Appelle la méthode pour soigner la créature
+        creature.estSoignee(maladie);
     }
 
     /**
@@ -106,7 +104,7 @@ public class ServiceMedical {
      * @param budget Le nouveau budget
      */
     public void reviserBudget(String budget) {
-        this.budget = budget;  // Met à jour le budget du service
+        this.budget = budget;
     }
 
     /**
@@ -125,13 +123,13 @@ public class ServiceMedical {
 
         sb.append("Créatures présentes :\n");
         if (listeCreatures.isEmpty()) {
-            sb.append("Aucune créature présente.\n");  // Si aucune créature, mentionne qu'il n'y en a pas
+            sb.append("Aucune créature présente.\n");
         }
         else {
             for (CreaturePatient creature : listeCreatures) {
-                sb.append(creature.toString()).append("\n");  // Affiche les détails de chaque créature
+                sb.append(creature.toString()).append("\n");
             }
         }
-        return sb.toString();  // Retourne la description complète du service médical
+        return sb.toString();
     }
 }

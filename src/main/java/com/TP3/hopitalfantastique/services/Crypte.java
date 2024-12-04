@@ -4,10 +4,8 @@ import com.TP3.hopitalfantastique.creatures.CreaturePatient;
 import com.TP3.hopitalfantastique.creatures.comportements.MortVivant;
 
 public class Crypte extends ServiceMedical {
-
-    // Attributs spécifiques à la Crypte
-    private int niveauVentilation;  // Niveau de ventilation dans la crypte
-    private float temperature;  // Température de la crypte
+    private int niveauVentilation;
+    private float temperature;
 
     /**
      * Constructeur de la Crypte
@@ -19,7 +17,7 @@ public class Crypte extends ServiceMedical {
      * @param temperature La température de la crypte
      */
     public Crypte(String nom, float superficie, int capaciteMax, String budget, int niveauVentilation, float temperature) {
-        super(nom, superficie, capaciteMax, budget);  // Appel du constructeur de la classe parente (ServiceMedical)
+        super(nom, superficie, capaciteMax, budget);
         this.niveauVentilation = niveauVentilation;
         this.temperature = temperature;
     }
@@ -64,15 +62,13 @@ public class Crypte extends ServiceMedical {
      */
     @Override
     public boolean ajouterCreature(CreaturePatient creature) {
-        // Vérifie si la créature est de type MortVivant
         if (creature instanceof MortVivant) {
-            // Vérifie si la capacité maximale n'est pas dépassée
             if (getListeCreatures().size() < getCapaciteMax()){
-                super.ajouterCreature(creature);  // Appel de la méthode de la classe parente pour ajouter la créature
+                super.ajouterCreature(creature);
                 return true;
             }
-            return false;  // Retourne false si la capacité est dépassée
+            return false;
         }
-        else return false;  // Retourne false si la créature n'est pas de type MortVivant
+        else return false;
     }
 }

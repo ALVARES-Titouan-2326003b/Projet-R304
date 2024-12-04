@@ -254,7 +254,8 @@ public class Lycanthrope {
     @Override
     public String toString() {
         return "Lycanthrope{" +
-                "sexe='" + sexe + '\'' +
+                "nom='" + nom + '\'' +
+                ", sexe='" + sexe + '\'' +
                 ", catAge='" + catAge + '\'' +
                 ", force=" + force +
                 ", facteurDomination=" + facteurDomination +

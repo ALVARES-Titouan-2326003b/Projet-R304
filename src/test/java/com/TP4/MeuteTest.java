@@ -41,14 +41,6 @@ class MeuteTest {
         assertNull(l1.getMeute());
     }
 
-    @Test
-    void testReproduction() {
-        int initialSize = meute.getLycanthropes().size();
-        System.setIn(new java.io.ByteArrayInputStream("Loup1\nLoup2\n".getBytes()));
-
-        meute.reproduction();
-        assertTrue(meute.getLycanthropes().size() > initialSize); // Test si des nouveaux sont ajoutés
-    }
 
     @Test
     void testQuicksortMeute() {

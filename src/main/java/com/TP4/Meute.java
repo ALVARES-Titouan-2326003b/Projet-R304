@@ -194,10 +194,37 @@ public class Meute {
         return hurlementMeute;
     }
 
+    /**
+     * Met à jour les rangs des lycanthropes de la meute.
+     *
+     */
     public void evolutionHierarchie() {
         for (Lycanthrope lycanthrope : lycanthropes) {
             lycanthrope.rangMaj();
         }
     }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Meute{");
+        sb.append("nom='").append(nom).append('\'');
+        sb.append(", hurlement='").append(hurlement).append('\'');
+        sb.append(", couple=").append(couple);
+        sb.append(", lycanthropes=[");
+
+        for (int i = 0; i < lycanthropes.size(); i++) {
+            sb.append(lycanthropes.get(i));
+            if (i < lycanthropes.size() - 1) {
+                sb.append(", ");
+            }
+        }
+
+        sb.append("]}");
+        return sb.toString();
+    }
+
+
 
 }
