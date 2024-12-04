@@ -1,5 +1,11 @@
 package com.TP3.hopitalfantastique.creatures.comportements;
 
 public interface Triage {
-    // attend plus patiemment quand il attend avec une créature de son espèce
+
+    /**
+     * Cette méthode représente un comportement de patience spécifique.
+     *
+     * Les créatures qui implémentent cette interface attendent plus patiemment
+     * lorsqu'elles sont en compagnie d'autres créatures de la même espèce.
+     */
 }
