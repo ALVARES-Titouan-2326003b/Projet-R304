@@ -3,6 +3,8 @@
 ### Introduction
 La simulation de colonie de lycanthropes est un jeu entièrement automatisé où votre rôle est limité à configurer la situation initiale. Une fois cette étape franchie, le monde des lycanthropes prend vie, évolue et se transforme au fil du temps, selon ses propres règles.
 
+-------
+
 ### Mise en Route
 1. Lancement de la Simulation
    * Téléchargez et lancez le fichier exécutable ColonieLycanthrope.jar.
@@ -18,6 +20,8 @@ Le joueur définit les paramètres de départ :
    * Paramètres spécifiques, comme la force moyenne et l’impétuosité.
 Une fois les paramètres validés, la simulation démarre.
 
+-------
+
 ### Fonctionnement de la Simulation
 1. Automatisation Totale
 La simulation fonctionne de manière autonome selon les règles internes :
@@ -31,6 +35,8 @@ La simulation fonctionne de manière autonome selon les règles internes :
 * Votre seule action est de contrôler l'écoulement du temps :
    * Avancer par cycle : Cliquez sur le bouton "Passer au cycle suivant" pour simuler un intervalle (par exemple, une semaine).
    * Avancer rapidement : Une option permet de faire défiler plusieurs cycles à la suite.
+
+-------
 
 ### Suivi et Visualisation
 1. Tableau de Bord
@@ -48,6 +54,9 @@ La simulation fonctionne de manière autonome selon les règles internes :
    * Domination ou soumission.
    * Naissance ou mort.
    * Changements dans les couples α.
+ 
+-------
+
 ### Règles Internes de la Simulation
 1. Hiérarchie des Meutes :
    * La hiérarchie est maintenue par des rangs (α, β, γ... jusqu’à ω).
@@ -58,13 +67,22 @@ La simulation fonctionne de manière autonome selon les règles internes :
    * Seul le couple α peut se reproduire pendant la saison des amours.
 4. Transformation en Humain :
    * Les lycanthropes peuvent, de manière aléatoire, se transformer en humains, ce qui peut dissoudre une meute ou bouleverser la hiérarchie.
+
+-------
+-------
 ### Conseils pour une Simulation Ludique
 * Diversifiez les paramètres initiaux : Essayez différentes répartitions pour observer des dynamiques uniques.
 * Soyez patient : La simulation évolue lentement, mais des événements inattendus peuvent survenir.
 * Observez les solitaires : Ils peuvent reformer des meutes et changer le paysage global.
+
+-------
+
 ### Problèmes et Solutions
 * Si la simulation semble bloquée :
    * Vérifiez si un trop petit nombre d'individus limite les interactions.
    * Essayez de relancer avec des paramètres plus équilibrés.
+ 
+-------
+
 ### Conclusion
 Votre rôle est d’observer et de profiter de la complexité des interactions lycanthropiques. Configurez intelligemment la situation initiale et laissez la magie opérer !
