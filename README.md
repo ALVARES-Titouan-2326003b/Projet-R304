@@ -1,4 +1,4 @@
-# Projet-R304
+# Projet-R304 - Qualité de developpement
 
 ### Groupe : 
 ALVARES Titouan, PELLET Casimir et TRAN Thomas 
