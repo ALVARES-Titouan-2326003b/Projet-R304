@@ -11,13 +11,13 @@ La simulation de colonie de lycanthropes est un jeu entièrement automatisé où
    * Un écran d'accueil vous invite à configurer la situation initiale.
 2. Configuration Initiale
 Le joueur définit les paramètres de départ :
-* Nombre de meutes : Choisissez le nombre de groupes de lycanthropes.
-* Localisation : Définissez les lieux où les meutes évoluent (par exemple : forêt, montagne, plaine).
-* Composition des meutes :
-   * Nombre total d'individus.
-   * Répartition des sexes (mâles/femelles).
-   * Répartition des catégories d'âge (jeunes, adultes, vieux).
-   * Paramètres spécifiques, comme la force moyenne et l’impétuosité.
+    * Nombre de meutes : Choisissez le nombre de groupes de lycanthropes.
+    * Localisation : Définissez les lieux où les meutes évoluent (par exemple : forêt, montagne, plaine).
+    * Composition des meutes :
+       * Nombre total d'individus.
+       * Répartition des sexes (mâles/femelles).
+       * Répartition des catégories d'âge (jeunes, adultes, vieux).
+       * Paramètres spécifiques, comme la force moyenne et l’impétuosité.
 Une fois les paramètres validés, la simulation démarre.
 
 -------
