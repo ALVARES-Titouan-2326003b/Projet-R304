@@ -38,5 +38,5 @@ Le rendu de projet nous semble correct dans le code effectué malgré l'absence 
 
 Cependant, on peut noter :
 * une charge et un temps de travail quasiment égal dans le groupe
-* une bonne cohésion et des phases d'échanges et de réflexion commune régulières
+* une bonne cohésion, des phases d'échanges et de réflexion commune régulières
 * rendu d'une majeure partie du travail fonctionnel, documenté et commenté ainsi que de la documentation pour les parties non rendues 
